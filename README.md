@@ -25,21 +25,30 @@ Once your VM is up and running you will need to connect to it. To do this we do 
 ### Step 5 - Configuring your ruby environment
 Once you `ssh` into your VM after setting up your environment variables, we need to install all ruby libraries. To do this run the bundle command below:
 
-    sudo gem install bundler -v 1.9.6
+    sudo gem install bundler -v 1.15.3
     bundle install
 
-### Step 6 - Provisioning your database
-Just run the following commands so your app is ready to go.
+### Step 6 - Setting up your database
+Once your ruby environment is initialized you will need to configure your local postgresql database. To do this copy and paste the following set of commands into your console. Ensure you `ssh` before running this.
+
+    sudo su postgres
+    pg_dropcluster --stop 9.1 main ; pg_createcluster --start --locale en_US.UTF-8 9.1 main
+    exit
+    sudo -u postgres createuser -s eic_development
+    sudo -u postgres psql -c "ALTER USER eic_development WITH PASSWORD 'eic_development'"
+
+### Step 7 - Provisioning your database
+Now that your database configuration has been set you should provision your database with our application's schema.
 
     rake db:create
     rake db:migrate
 
-### Step 7 - Indexing in ElasticSearch
+### Step 8 - Indexing in ElasticSearch
 We use elasticsearch to cache and search a good part of our database data. To initialize all of the indices in our system run the following command:
 
     rake index:create:all
 
-### Step 8 - Launching the web server
+### Step 9 - Launching the web server
 At this point all resources have been installed and initialized and you are ready to start your rails server. To do this use the following command:
 
     bundle exec puma -C config/puma.rb
@@ -131,3 +140,23 @@ VMs and their providers (virtualbox) can sometimes misbehave. If you run into is
 If you run into issues when booting your VM, don't panic. The issue very well may be that you need to restart the virtualbox instance. The following command will reboot that instance, keep in mind the file path, yours may be installed somewhere else.
 
     sudo /Library/StartupItems/VirtualBox/VirtualBox restart
+
+## Inegration with Auth on core EIC server
+The following are examples of how to access users on the EIC server along with how to auth from the EIC server. The third example is how we verify auth creds.
+
+```
+// Get user
+GET /api/v1/users.php?username=Cazz0r&password=test
+> 200 OK {"user":{"username":"Cazz0r","tags":["bgs-nerd"]}}
+
+// Get user
+GET /api/v1/users.php?username=Cazz0r&password=test&bgs-nerd
+> 200 OK {"user":{"username":"Cazz0r","tags":["bgs-nerd"],"bgs-nerd":true}}
+
+// Auth creds
+GET /api/v1/users.php?username=Cazz0r&password=test&sales-nerd
+> 401 Unauthorized {"user":{"username":"Cazz0r","tags":["bgs-nerd"],"sales-nerd":false}}
+
+// Full domain example
+http://eicgaming.com/api/v1/users.php
+```

@@ -142,23 +142,23 @@ else
 fi
 
 # Install Postgres
-# echo_pretty "Installing Postgres..."
+echo_pretty "Installing Postgres..."
 
-# if [ ! -f "/usr/bin/psql" ]; then
-#     apt-get install -y  \
-#             postgresql \
-#             libpq-dev \
-#             postgresql-client
+if [ ! -f "/usr/bin/psql" ]; then
+    apt-get install -y  \
+            postgresql \
+            libpq-dev \
+            postgresql-client
 
-#     # Insure that the locale is properly set for postgres
-#     locale-gen en_US.UTF-8
-#     update-locale LANG=en_US.UTF-8
+    # Insure that the locale is properly set for postgres
+    locale-gen en_US.UTF-8
+    update-locale LANG=en_US.UTF-8
 
-#     sudo -u postgres createuser -s eic_development
-#     sudo -u postgres psql -c "ALTER USER eic_development WITH PASSWORD 'eic_development'"
-# else
-#     echo_pretty "Looks like Postgres exists. Assuming Postgres installation..."
-# fi
+    sudo -u postgres createuser -s eic_development
+    sudo -u postgres psql -c "ALTER USER eic_development WITH PASSWORD 'eic_development'"
+else
+    echo_pretty "Looks like Postgres exists. Assuming Postgres installation..."
+fi
 
 # Automatically move into the shared folder, but only add the command
 # if it's not already there.
