@@ -43,12 +43,7 @@ Now that your database configuration has been set you should provision your data
     rake db:create
     rake db:migrate
 
-### Step 8 - Indexing in ElasticSearch
-We use elasticsearch to cache and search a good part of our database data. To initialize all of the indices in our system run the following command:
-
-    rake index:create:all
-
-### Step 9 - Launching the web server
+### Step 8 - Launching the web server
 At this point all resources have been installed and initialized and you are ready to start your rails server. To do this use the following command:
 
     bundle exec puma -C config/puma.rb
