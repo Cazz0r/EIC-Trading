@@ -1,0 +1,1 @@
+EIC_URL = "http://eicgaming.com"

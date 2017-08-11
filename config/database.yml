@@ -1,0 +1,28 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: eic_app
+  username: eic_development
+  password: eic_development
+  host: 127.0.0.1
+  port: 5432
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: eic_app_test
+  username: eic_development
+  password: eic_development
+  host: 127.0.0.1
+  port: 5432
+  min_messages: warning
+
+production:
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
+  checkout_timeout: <%= ENV["AR_CONNECTION_TIMEOUT"] || 5 %>
