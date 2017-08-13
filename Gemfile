@@ -11,7 +11,6 @@ gem 'strip_attributes', '= 1.8.0'
 gem 'puma', '= 3.9.1'
 gem 'puma_worker_killer', '= 0.1.0'
 gem 'listen', '= 3.1.5'
-gem 'turbolinks', '= 5.0.1'
 
 group :assets do
   gem 'sass', '= 3.5.1'
