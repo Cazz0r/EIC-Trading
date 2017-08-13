@@ -39,6 +39,7 @@ table, tbody, td, textarea, tfoot, th, thead, time, tr, ul, var, video {
 	text-decoration: none;
 	vertical-align: baseline;
 	z-index: 1;
+	box-sizing: border-box;
 }
 
 /* Miscellaneous resets */
