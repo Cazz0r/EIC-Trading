@@ -11,6 +11,7 @@ gem 'strip_attributes', '= 1.8.0'
 gem 'puma', '= 3.9.1'
 gem 'puma_worker_killer', '= 0.1.0'
 gem 'listen', '= 3.1.5'
+gem 'active_model_serializers', '= 0.8.3'
 
 group :assets do
   gem 'sass', '= 3.5.1'

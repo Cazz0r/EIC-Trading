@@ -1,0 +1,44 @@
+body {
+  a {
+    text-decoration: underline;
+    color: #f4a009;
+    transition: color 0.15s;
+
+    &:hover {
+      color: #ffd07b;
+      cursor: pointer;
+    }
+  }
+
+  div.bask-wrapper {
+    div.element {
+      padding: 16px 16px 0 16px;
+    }
+  }
+
+  div.errors {
+    padding: 16px;
+    background-color: #ffa0a0;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+
+    p {
+      color: #af1212;
+      margin: 0 auto;
+      max-width: 400px;
+
+      &.title {
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 400;
+      }
+
+      &.detail {
+        padding-top: 4px;
+      }
+    }
+  }
+}

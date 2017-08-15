@@ -6,17 +6,17 @@
 article, aside, audio, command, datagrid, details, dialog, embed, 
 figcaption, figure, footer, header, hgroup, menu, nav, section, summary,
 video, wbr {
-	display: block;
+  display: block;
 }
 
 bdi, figcaption, keygen, mark, meter, progress, rp, rt, ruby, time {
-	display: inline;
+  display: inline;
 }
 
 /* Deprecated tags */
 acronym, applet, big, center, dir, font, frame, frameset, noframes, s,
 strike, tt, u, xmp {
-	display: none;
+  display: none;
 }
 
 /* Reset styles for all structural tags */
@@ -28,42 +28,48 @@ input, ins, keygen, kbd, label, legend, li, map, mark, menu, meter, nav,
 noscript, object, ol, optgroup, option, output, p, param, pre, progress,
 q, rp, rt, ruby, samp, section, select, small, span, strong, sub, sup, 
 table, tbody, td, textarea, tfoot, th, thead, time, tr, ul, var, video {
-	background: transparent;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	margin: 0;
-	outline: none;
-	padding: 0;
-	text-align: left;
-	text-decoration: none;
-	vertical-align: baseline;
-	z-index: 1;
-	box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  outline: none;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  vertical-align: baseline;
+  z-index: 1;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  word-wrap: break-word;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Miscellaneous resets */
 body {
-	line-height: 1;
-	background-color: black;
-	color: white;
+  line-height: 1;
+  background-color: black;
+  color: white;
 }
 
 ol, ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote, q {
-	quotes: none;
+  quotes: none;
 
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }

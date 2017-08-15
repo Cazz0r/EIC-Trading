@@ -1,33 +1,37 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  errors:
+    validation_error:
+      status: 422
+      code: 0
+      title: "Reserved Code"
+      detail: "0 is the reserved code for all ActiveRecord attribute validation errors."
+    session_required:
+      status: 401
+      code: 1
+      title: "Authentication is Required"
+      detail: "Authentication is required for this resource."
+    resource_not_found:
+      status: 404
+      code: 2
+      title: "File Not Found"
+      detail: "Sorry, the content you are seeking does not appear to exist."
+    missing_login_parameters:
+      status: 422
+      code: 3
+      title: "Missing Login Parameters"
+      detail: "Please provide both a username and password."
+    user_not_found:
+      status: 404
+      code: 4
+      title: "User Not Found"
+      detail: "Unable to find user."
+    invalid_login_credentials:
+      status: 401
+      code: 5
+      title: "Invalid Login Credentials"
+      detail: "Invalid login credentials."
+    unable_to_process_session_creation:
+      status: 422
+      code: 6
+      title: "Unable to Process Session Creation"
+      detail: "Unable to process session creation."

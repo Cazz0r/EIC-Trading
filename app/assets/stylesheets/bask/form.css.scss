@@ -1,0 +1,38 @@
+body div.bask-wrapper div.element.form {
+  &.center {
+    margin: 0 auto;
+    max-width: 400px;
+  }
+
+  div.input-group {
+    padding-top: 16px;
+
+    &:nth-of-type(1) {
+      padding-top: 0;
+    }
+
+    label {
+      padding-bottom: 4px;
+    }
+
+    input[type="text"], input[type="password"], textarea {
+      background-color: #b9b9b9;
+      border: solid 1px #717171;
+      padding: 8px 10px 6px 10px;
+      color: black;
+      width: 100%;
+    }
+
+    button {
+      background-color: #b9b9b9;
+      border: solid 1px #717171;
+      padding: 8px 10px 6px 10px;
+      color: black;
+      
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

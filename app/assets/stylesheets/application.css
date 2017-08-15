@@ -13,5 +13,7 @@
  *= require bask/reset
  *= require bask/typography
  *= require bask/progress_bar
+ *= require bask/template
+ *= require bask/form
  *= require_self
  */

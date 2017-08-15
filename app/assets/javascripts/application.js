@@ -16,4 +16,6 @@
 
 // Bask Tools
 //= require ./bask/jquery-3.2.1.min
+//= require ./bask/helpers
+//= require ./bask/page-functions/base
 //= require_tree ./bask
