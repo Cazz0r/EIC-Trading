@@ -4,7 +4,9 @@ module EicApiHelper
 
   def self.get_user(username, password)
   	return if username.blank? || password.blank?
-    return HttpHelper.get("#{EicApiHelper::EIC_DOMAIN}/api/v1/users.php?username=#{URI.encode(username)}&password=#{URI.encode(password)}", true)
+    url = "#{EicApiHelper::EIC_DOMAIN}/api/v1/users.php?username=#{username.gsub('&', '%26')}&password=#{password.gsub('&', '%26')}"
+    puts "GET '#{url}'"
+    return HttpHelper.get(url, true)
   end
 
   def self.get_user_from_payload(payload)
