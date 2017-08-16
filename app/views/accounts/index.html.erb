@@ -1,0 +1,8 @@
+<div class="bask-wrapper">
+  <div class="element">
+  	<p>Adding, editing and commenting of accounts coming soon...</p>
+    <% @accounts.each do |account| %>
+    	<p style="line-height: 24px;"><%= account.type_with_name %> - [DISCORD] <%= account.discord_name %> - <%= account.credits %> credits</p>
+    <% end %>
+  </div>
+</div>

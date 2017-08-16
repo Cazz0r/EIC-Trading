@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815010056) do
+ActiveRecord::Schema.define(version: 20170816045953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "discord_name"
+    t.integer "type", default: 0
+    t.integer "credits", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_accounts_on_name"
+    t.index ["type"], name: "index_accounts_on_type"
+  end
+
+  create_table "trade_events", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "user_id"
+    t.integer "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_trade_events_on_account_id"
+    t.index ["user_id"], name: "index_trade_events_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
