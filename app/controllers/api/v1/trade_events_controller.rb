@@ -13,13 +13,14 @@ class Api::V1::TradeEventsController < Api::V1::BaseController
   end
 
   def create
-    @trade_event = TradeEvent.new(params[:trade_event])
+    @trade_event = TradeEvent.new(trade_event_params)
+    @trade_event.user = @session_user
     return ar_error(@trade_event) unless @trade_event.save
     render_trade_event(201)
   end
 
   def update
-    return ar_error(@trade_event) unless @trade_event.update_attributes(params[:trade_event])
+    return ar_error(@trade_event) unless @trade_event.update_attributes(trade_event_params)
     render_trade_event(202)
   end
 
@@ -29,6 +30,10 @@ class Api::V1::TradeEventsController < Api::V1::BaseController
   end
 
   private
+  def trade_event_params
+    params.require(:trade_event).permit(:content, :account_id)
+  end
+
   def render_trade_events(status)
     outputs = [{ model: @trade_events, key: :trade_events, serializer: API::V1::TradeEventSerializer }]
     outputs << { model: @users, key: :users, serializer: API::V1::UserSerializer }

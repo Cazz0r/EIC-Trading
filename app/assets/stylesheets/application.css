@@ -15,5 +15,6 @@
  *= require bask/progress_bar
  *= require bask/template
  *= require bask/form
+ *= require bask/model_list
  *= require_self
  */

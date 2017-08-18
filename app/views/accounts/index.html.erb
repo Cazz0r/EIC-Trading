@@ -1,7 +1,8 @@
 <div class="bask-wrapper">
   <div class="element">
-    <p><a onClick="page.toggleElement('div.create-account');">Create Account</a></p>
+    <h3>Accounts <a onClick="page.toggleElement('div.create-account');">Create Account</a></h3>
   </div>
+  
   <div class="element create-account form center hidden">
     <div class="input-group">
       <label for="account_name">Account Name</label>
@@ -24,8 +25,7 @@
     </div>
   </div>
 
-  <div class="element">
-    <h3>Accounts</h3>
+    <div class="element">
     <% @accounts.each do |account| %>
       <p class="text"><a href="/accounts/<%= account.id %>"><%= account.type_with_name %></a> - <%= account.discord_name %> - <%= account.credits %> credits</p>
     <% end %>

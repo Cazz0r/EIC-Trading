@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.includes(:trade_events, trade_events: :user).find_by_id(params[:id])
+    @trade_events = TradeEvent.includes(:user).where(account_id: @account.id).order("created_at desc")
     @accounts_on = true
     @socialmeta = {title: "EIC: #{@account.name}"}
   end

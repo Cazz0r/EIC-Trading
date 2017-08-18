@@ -1,8 +1,9 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @account.type_with_name %> <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a></h3>
+    <h3><%= @account.type_with_name %> <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Trade Event</a></h3>
      <p class="text">Account has <strong><%= @account.credits %> credits</strong> and is known on Discord as <strong><%= @account.discord_name %></strong>.</p>
   </div>
+
   <div class="element edit-account form center hidden">
     <div class="input-group">
       <label for="account_name">Account Name</label>
@@ -24,7 +25,36 @@
       <button onclick="page.accounts.updateAccount();">Update Account</button>
     </div>
   </div>
+
   <div class="element delete-account hidden">
-     <p class="text">Really delete this account? <a onClick="page.accounts.deleteAccount();"><strong>Jettison (Abandon)</strong></a> &middot; <a onClick="page.toggleElement('div.delete-account');">Cancel</a></p>
+    <p class="text">Really delete this account? <a onClick="page.accounts.deleteAccount();"><strong>Jettison (Abandon)</strong></a> &middot; <a onClick="page.toggleElement('div.delete-account');">Cancel</a></p>
+  </div>
+
+  <div class="element add-trade-event form hidden">
+    <div class="input-group">
+      <label for="trade_event_input">Trade Event</label>
+      <input type="text" placeholder="i.e. Contributed 25 MTs." id="trade_event_input"  />
+    </div>
+    <div class="input-group">
+      <button onclick="page.tradeEvents.createTradeEvent();">Add Trade Event</button>
+    </div>
+  </div>
+
+  <div class="element model-list">
+    <% @trade_events.each do |trade_event| %>
+      <div class="listing">
+        <div class="main two-wide">
+          <div class="left">
+            <a href="/cmdrs/<%= trade_event.user.id %>"><div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div></a>
+          </div>
+          <div class="right">
+            <p class="meta"><%= trade_event.user.username %> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="quote">"<%= trade_event.content %>"</p>
+          </div>
+        </div>
+        <div class="tools hidden">
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -1,4 +1,8 @@
 body {
+  .hidden {
+    display: none;
+  }
+
   a {
     text-decoration: underline;
     color: #f4a009;
@@ -16,10 +20,6 @@ body {
     div.element {
       padding: 16px 16px 0 16px;
       overflow: hidden;
-
-      &.hidden {
-        display: none;
-      }
 
       p {
         &.text {
