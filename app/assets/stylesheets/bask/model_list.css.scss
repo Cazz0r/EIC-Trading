@@ -54,6 +54,14 @@ body div.bask-wrapper div.element.model-list {
             display: block;
             top: -8px;
             right: -8px;
+
+            span {
+              display: inline;
+              
+              &.hidden {
+                display: none;
+              }
+            }
           }
 
           p.subtext {

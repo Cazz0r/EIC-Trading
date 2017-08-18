@@ -18,5 +18,24 @@ page.tradeEvents = {
         page.errors.set(response.responseJSON);
       }
     });
+  },
+  delete: function(id) {
+    page.errors.clear();
+    ShowLoading();
+    $.ajax({
+      url: '/api/v1/trade_events/' + id,
+      type: 'DELETE',
+      data: {},
+      traditional: true,
+      dataType: 'json',
+      success: function(response) {
+        HideLoading();
+        location.reload();
+      },
+      error: function(response) {
+        HideLoading();
+        page.errors.set(response.responseJSON);
+      }
+    });
   }
 }
