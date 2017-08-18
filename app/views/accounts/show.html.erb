@@ -49,14 +49,25 @@
           </div>
           <div class="right">
             <p class="meta">
-              <span class="really-delete-<%= trade_event.id %> hidden"> Really? <a onclick="page.tradeEvents.delete(<%= trade_event.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');">No</a></span>
+              <a onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Edit</a> &middot;
+
+              <span class="really-delete-<%= trade_event.id %> hidden"> Really? <a onclick="page.tradeEvents.deleteTradeEvent(<%= trade_event.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');">No</a></span>
               <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');" class="start-delete-<%= trade_event.id %>">Delete</a> &middot;
               
               <a href="/cmdrs/<%= trade_event.user.id %>"><%= trade_event.user.username %></a> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="quote">"<%= trade_event.content %>"</p>
           </div>
         </div>
-        <div class="tools hidden">
+        <div class="tools edit-trade-event-<%= trade_event.id %> hidden">
+          <div class="element form">
+            <div class="input-group">
+              <input type="text" placeholder="i.e. Contributed 25 MTs." id="trade_event_input_<%= trade_event.id %>" value="<%= trade_event.content %>" />
+            </div>
+            <div class="input-group">
+              <button onclick="page.tradeEvents.updateTradeEvent(<%= trade_event.id %>);">Update Trade Event
+              </button><button onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Cancel</button>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
