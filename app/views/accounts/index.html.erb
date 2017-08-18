@@ -1,9 +1,9 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3>Accounts <a onClick="page.toggleElement('div.create-account');">Create Account</a></h3>
+    <h3>Accounts &middot; <a onClick="page.toggleElement('div.create-account');">Create Account</a></h3>
   </div>
   
-  <div class="element create-account form center hidden">
+  <div class="element create-account form bound hidden">
     <div class="input-group">
       <label for="account_name">Account Name</label>
       <input type="text" placeholder="Account name" id="account_name" />
@@ -25,9 +25,18 @@
     </div>
   </div>
 
-    <div class="element">
+  <div class="element model-list">
     <% @accounts.each do |account| %>
-      <p class="text"><a href="/accounts/<%= account.id %>"><%= account.type_with_name %></a> - <%= account.discord_name %> - <%= account.credits %> credits</p>
+      <div class="listing">
+        <div class="main two-wide without-image">
+          <div class="right">
+            <p class="meta"><%= account.account_type_string %> &middot; Opened <%= account.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="descriptor"><a href="/accounts/<%= account.id %>"><%= account.name %></a> - <%= account.credits %> credits</p>
+          </div>
+        </div>
+        <div class="tools hidden">
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

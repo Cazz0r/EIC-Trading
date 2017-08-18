@@ -1,7 +1,6 @@
 <% if @session_user %>
 	<div class="nav">
-		<a href="/dashboard" class="<%= @dash_on ? 'active' : '' %>">DASHBOARD
-		</a><a href="/accounts" class="<%= @accounts_on ? 'active' : '' %>">ACCOUNTS
+		<a href="/accounts" class="<%= @accounts_on ? 'active' : '' %>">ACCOUNTS
 		</a><a href="/cmdrs" class="<%= @cmdrs_on ? 'active' : '' %>">EIC CMDRS
 		</a><a href="/cmdrs/<%= @session_user.id %>" class="<%= @cmdr_session_on ? 'active' : '' %>">CMDR <%= @session_user.username.upcase %></a>
 	</div>

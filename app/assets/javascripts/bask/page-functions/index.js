@@ -9,7 +9,7 @@ page.index = {
     $.post("/api/v1/sessions", {session: {username: username, password: password}})
     .done(function(response) {
       HideLoading();
-      window.location = '/dashboard';
+      window.location = '/accounts';
     })
     .fail(function(response) {
       HideLoading();

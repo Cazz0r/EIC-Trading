@@ -1,7 +1,23 @@
 <div class="bask-wrapper">
   <div class="element">
+    <h3>EIC CMDRS</h3>
+  </div>
+
+  <div class="element model-list">
     <% @users.each do |user| %>
-    	<p style="line-height: 32px;"><span style="height: 32px; width: 32px; display: inline-block; background-image: url('<%= user.image_url %>'); background-position: center center; background-repeat: no-repeat; border-radius: 100%; background-size: 32px 32px;"></span> <%= user.username %> - <%= user.rank %> - <%= user.tags %></p>
+      <div class="listing">
+        <div class="main two-wide">
+          <div class="left">
+            <a href="/cmdrs/<%= user.id %>"><div class="image" style="background-image: url(<%= user.image_url %>)"></div></a>
+          </div>
+          <div class="right">
+            <p class="meta">Trading since <%= user.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="descriptor"><a href="/cmdrs/<%= user.id %>">CMDR <%= user.username %></a></p>
+          </div>
+        </div>
+        <div class="tools hidden">
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

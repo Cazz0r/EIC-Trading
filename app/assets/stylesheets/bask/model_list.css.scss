@@ -11,6 +11,12 @@ body div.bask-wrapper div.element.model-list {
 
     div.main {
       &.two-wide {
+        &.without-image {
+          div.right {
+            padding: 0;
+          }
+        }
+
         div.left {
           position: absolute;
           width: 48px;
@@ -31,6 +37,11 @@ body div.bask-wrapper div.element.model-list {
           padding: 0 0 0 64px;
           z-index: 0;
 
+          p.descriptor {
+            font-size: 22px;
+            line-height: 48px;
+          }
+
           p.quote {
             font-size: 22px;
             font-style: italic;
@@ -43,6 +54,11 @@ body div.bask-wrapper div.element.model-list {
             display: block;
             top: -8px;
             right: -8px;
+          }
+
+          p.subtext {
+            font-size: 18px;
+            line-height: 24px;
           }
         }
       }

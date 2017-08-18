@@ -4,6 +4,10 @@ body div.bask-wrapper div.element.form {
     max-width: 400px;
   }
 
+  &.bound {
+    max-width: 400px;
+  }
+
   &.four-wide {
     div.input-group {
       width: 25%;

@@ -1,10 +1,10 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @account.type_with_name %> <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Trade Event</a></h3>
+    <h3><%= @account.type_with_name %> &middot; <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Trade Event</a></h3>
      <p class="text">Account has <strong><%= @account.credits %> credits</strong> and is known on Discord as <strong><%= @account.discord_name %></strong>.</p>
   </div>
 
-  <div class="element edit-account form center hidden">
+  <div class="element edit-account form bound hidden">
     <div class="input-group">
       <label for="account_name">Account Name</label>
       <input type="text" placeholder="Account name" id="account_name" value="<%= @account.name %>" />
@@ -48,7 +48,7 @@
             <a href="/cmdrs/<%= trade_event.user.id %>"><div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div></a>
           </div>
           <div class="right">
-            <p class="meta"><%= trade_event.user.username %> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="meta"><a href="/cmdrs/<%= trade_event.user.id %>"><%= trade_event.user.username %></a> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="quote">"<%= trade_event.content %>"</p>
           </div>
         </div>

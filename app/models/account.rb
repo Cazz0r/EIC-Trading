@@ -10,4 +10,8 @@ class Account < ActiveRecord::Base
   def type_with_name
     self.account_type == 0 ? "[CMDR] #{self.name}" : "[Group] #{self.name}"
   end
+
+  def account_type_string
+  	self.account_type == 0 ? "CMDR" : "Group"
+  end
 end

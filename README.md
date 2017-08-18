@@ -154,4 +154,10 @@ GET /api/v1/users.php?username=Cazz0r&password=test&sales-nerd
 
 // Full domain example
 http://eicgaming.com/api/v1/users.php
+
+// MySQL Creds (read permission only)
+Host: eicgaming.com
+Port: 3306
+User: drieton
+Pass: passwordofdrieton
 ```
