@@ -12,4 +12,18 @@
 html, body {
   font-family: Open Sans, sans-serif;
   font-weight: 300;
+
+  h3 {
+    font-size: 22px;
+    line-height: 22px;
+    display: block;
+    padding: 0 0 6px 0;
+    margin: 0 0 12px 0;
+    border-bottom: 2px solid #f4a009;
+  }
+
+  strong {
+    display: inline;
+    font-weight: 600;
+  }
 }

@@ -8,11 +8,11 @@ class AccountsController < ApplicationController
 
     # N + 1, but there aren't more than a handful of accounts.
     # Side project logic FTW!
-    @accounts = Account.where('id > 0').order('credits desc')
+    @accounts = Account.where('id > 0').order('name asc')
   end
 
   def show
-    @account = Account.find_by_id(params[:id])
+    @account = Account.includes(:trade_events, trade_events: :user).find_by_id(params[:id])
     @accounts_on = true
     @socialmeta = {title: "EIC: #{@account.name}"}
   end

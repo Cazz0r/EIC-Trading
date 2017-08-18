@@ -35,3 +35,8 @@ en:
       code: 6
       title: "Unable to Process Session Creation"
       detail: "Unable to process session creation."
+    lookup_params_required:
+      status: 422
+      code: 7
+      title: "Lookup Parameters Required"
+      detail: "Required parameters were missing from the request."

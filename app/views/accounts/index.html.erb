@@ -1,8 +1,33 @@
 <div class="bask-wrapper">
   <div class="element">
-  	<p>Adding, editing and commenting of accounts coming soon...</p>
+    <p><a onClick="page.toggleElement('div.create-account');">Create Account</a></p>
+  </div>
+  <div class="element create-account form center hidden">
+    <div class="input-group">
+      <label for="account_name">Account Name</label>
+      <input type="text" placeholder="Account name" id="account_name" />
+    </div>
+    <div class="input-group">
+      <label for="account_discord_name">Discord Handle</label>
+      <input type="text" placeholder="Discord handle" id="account_discord_name" />
+    </div>
+    <div class="input-group">
+      <label for="account_type">Type (0 = CMDR, 1 = Player Group)</label>
+      <input type="number" placeholder="Account type" id="account_type" />
+    </div>
+    <div class="input-group">
+      <label for="credit_count">Credits</label>
+      <input type="number" placeholder="Credits" id="credit_count" />
+    </div>
+    <div class="input-group">
+      <button onclick="page.accounts.createAccount();">Create Account</button>
+    </div>
+  </div>
+
+  <div class="element">
+    <h3>Accounts</h3>
     <% @accounts.each do |account| %>
-    	<p style="line-height: 24px;"><%= account.type_with_name %> - [DISCORD] <%= account.discord_name %> - <%= account.credits %> credits</p>
+      <p class="text"><a href="/accounts/<%= account.id %>"><%= account.type_with_name %></a> - <%= account.discord_name %> - <%= account.credits %> credits</p>
     <% end %>
   </div>
 </div>

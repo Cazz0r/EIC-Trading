@@ -1,5 +1,5 @@
 class API::V1::SessionSerializer < API::V1::ModelSerializer
-  attributes :username, :password, :user_id
+  attributes :username, :password, :user_id, :image_url
 
   def password
     nil

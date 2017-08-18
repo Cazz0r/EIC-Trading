@@ -1,5 +1,30 @@
 <div class="bask-wrapper">
   <div class="element">
-    <p style="line-height: 24px;"><%= @account.type_with_name %> - [DISCORD] <%= @account.discord_name %> - <%= @account.credits %> credits</p>
+    <h3><%= @account.type_with_name %> <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a></h3>
+     <p class="text">Account has <strong><%= @account.credits %> credits</strong> and is known on Discord as <strong><%= @account.discord_name %></strong>.</p>
+  </div>
+  <div class="element edit-account form center hidden">
+    <div class="input-group">
+      <label for="account_name">Account Name</label>
+      <input type="text" placeholder="Account name" id="account_name" value="<%= @account.name %>" />
+    </div>
+    <div class="input-group">
+      <label for="account_discord_name">Discord Handle</label>
+      <input type="text" placeholder="Discord handle" id="account_discord_name" value="<%= @account.discord_name %>" />
+    </div>
+    <div class="input-group">
+      <label for="account_type">Type (0 = CMDR, 1 = Player Group)</label>
+      <input type="number" placeholder="Account type" id="account_type" value="<%= @account.account_type %>" />
+    </div>
+    <div class="input-group">
+      <label for="credit_count">Credits</label>
+      <input type="number" placeholder="Credits" id="credit_count" value="<%= @account.credits %>" />
+    </div>
+    <div class="input-group">
+      <button onclick="page.accounts.updateAccount();">Update Account</button>
+    </div>
+  </div>
+  <div class="element delete-account hidden">
+     <p class="text">Really delete this account? <a onClick="page.accounts.deleteAccount();"><strong>Jettison (Abandon)</strong></a> &middot; <a onClick="page.toggleElement('div.delete-account');">Cancel</a></p>
   </div>
 </div>

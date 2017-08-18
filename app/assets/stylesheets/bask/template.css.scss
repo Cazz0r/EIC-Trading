@@ -3,6 +3,8 @@ body {
     text-decoration: underline;
     color: #f4a009;
     transition: color 0.15s;
+    text-decoration: none;
+    display: inline-block;
 
     &:hover {
       color: #ffd07b;
@@ -13,6 +15,17 @@ body {
   div.bask-wrapper {
     div.element {
       padding: 16px 16px 0 16px;
+      overflow: hidden;
+
+      &.hidden {
+        display: none;
+      }
+
+      p {
+        &.text {
+          line-height: 24px;
+        }
+      }
     }
   }
 
