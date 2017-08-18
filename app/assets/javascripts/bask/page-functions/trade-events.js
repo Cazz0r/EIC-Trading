@@ -3,6 +3,7 @@ page.tradeEvents = {
     var content = $('#trade_event_input').val();
     if(blank(content)) { return; }
 
+    page.errors.clear();
     ShowLoading();
     $.ajax({
       url: '/api/v1/trade_events',
@@ -24,6 +25,7 @@ page.tradeEvents = {
     var content = $('#trade_event_input_' + id).val();
     if(blank(content)) { return; }
 
+    page.errors.clear();
     ShowLoading();
     $.ajax({
       url: '/api/v1/trade_events/' + id,
