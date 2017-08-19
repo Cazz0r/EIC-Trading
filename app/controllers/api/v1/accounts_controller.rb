@@ -14,11 +14,18 @@ class Api::V1::AccountsController < Api::V1::BaseController
   def create
     @account = Account.new(account_params)
     return ar_error(@account) unless @account.save
+
+    # Track how many credits this account was opened with
+    @trade_event = TradeEvent.new({user_id: @session_user.id, account_id: @account.id, content: "Credit account opened with #{@account.credit_count} credits."})
+    @trade_event.save
+
     render_account(201)
   end
 
   def update
+    credit_count = @account.credit_count
     return ar_error(@account) unless @account.update_attributes(account_params)
+    TradeEventHelper.trade_event_for_credits_changed(credit_count, @session_user, @account)
     render_account(202)
   end
 

@@ -12,6 +12,7 @@ page.accounts = {
       traditional: true,
       dataType: 'json',
       success: function(response) {
+        
         HideLoading();
         window.location = '/accounts/' + response.account.id;
       },

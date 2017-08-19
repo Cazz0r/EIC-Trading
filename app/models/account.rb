@@ -14,4 +14,8 @@ class Account < ActiveRecord::Base
   def account_type_string
   	self.account_type == 0 ? "CMDR" : "Group"
   end
+
+  def credit_count
+    self.credits ? self.credits : 0
+  end
 end
