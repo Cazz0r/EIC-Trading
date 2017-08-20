@@ -12,7 +12,6 @@ page.accounts = {
       traditional: true,
       dataType: 'json',
       success: function(response) {
-        
         HideLoading();
         window.location = '/accounts/' + response.account.id;
       },
@@ -53,6 +52,28 @@ page.accounts = {
       success: function(response) {
         HideLoading();
         window.location = '/accounts';
+      },
+      error: function(response) {
+        HideLoading();
+        page.errors.set(response.responseJSON);
+      }
+    });
+  },
+  depositWithdraw: function(current_credits) {
+    var dw_val = $('#deposit_withdraw').val();
+    if(blank(dw_val)) { return; }
+    var new_credits = current_credits + parseInt(dw_val);
+    page.errors.clear();
+    ShowLoading();
+    $.ajax({
+      url: '/api/v1/accounts/' + page.getId(),
+      type: 'PUT',
+      data: { 'account[credits]': new_credits },
+      traditional: true,
+      dataType: 'json',
+      success: function(response) {
+        HideLoading();
+        location.reload();
       },
       error: function(response) {
         HideLoading();

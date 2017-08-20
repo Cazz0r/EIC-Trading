@@ -1,7 +1,7 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @account.type_with_name %> &middot; <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Trade Event</a></h3>
-     <p class="text">Account has <strong><%= @account.credits %> credits</strong> and is known on Discord as <strong><%= @account.discord_name %></strong>.</p>
+    <h3><%= @account.type_with_name %> &middot; <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Trade Event</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a></h3>
+     <p class="text">Account has <strong><%= @account.credit_count %> credits.</strong><% if !@account.discord_name.blank? %> Known on Discord as <strong><%= @account.discord_name %></strong>.<% end %></p>
   </div>
 
   <div class="element edit-account form bound hidden">
@@ -37,6 +37,16 @@
     </div>
     <div class="input-group">
       <button onclick="page.tradeEvents.createTradeEvent();">Add Trade Event</button>
+    </div>
+  </div>
+
+  <div class="element deposit-withdraw form bound hidden">
+    <div class="input-group">
+      <label for="deposit_withdraw">Deposit/Withdraw</label>
+      <input type="text" placeholder="i.e. -100 or 75 or -10 etc..." id="deposit_withdraw"  />
+    </div>
+    <div class="input-group">
+      <button onclick="page.accounts.depositWithdraw(<%= @account.credit_count %>);">Apply</button>
     </div>
   </div>
 
