@@ -1,9 +1,9 @@
 body div.bask-wrapper div.element.model-list {
   div.listing {
     border: 1px solid #f4a009;
-    padding: 16px;
+    padding: 8px;
     background: repeating-linear-gradient(-55deg, #222, #222 10px, #333 10px, #333 20px);
-    margin-top: 16px;
+    margin-top: 4px;
 
     &:nth-of-type(1) {
       margin-top: 0;
@@ -13,61 +13,57 @@ body div.bask-wrapper div.element.model-list {
       &.two-wide {
         &.without-image {
           div.right {
-            padding: 0;
+            padding: 0 300px 0 0;
           }
         }
 
         div.left {
           position: absolute;
-          width: 48px;
-          height: 48px;
+          width: 22px;
+          height: 22px;
           z-index: 1;
 
           div.image {
-            height: 48px;
-            width: 48px;
+            height: 22px;
+            width: 22px;
             background-position: center center;
             background-repeat: no-repeat;
             border-radius: 100%;
-            background-size: 48px 48px;
+            background-size: 22px 22px;
           }
         }
 
         div.right {
-          padding: 0 0 0 64px;
+          padding: 0 280px 0 28px;
           z-index: 0;
 
-          p.descriptor {
-            font-size: 22px;
-            line-height: 48px;
-          }
-
-          p.quote {
-            font-size: 22px;
-            font-style: italic;
-            line-height: 48px;
-          }
-
-          p.meta {
+          p {
             font-size: 14px;
-            position: absolute;
-            display: block;
-            top: -8px;
-            right: -8px;
-            z-index: 2;
+            line-height: 22px;
 
-            span {
-              display: inline;
+            &.descriptor {}
+            &.quote {
+              font-style: italic;
+            }
+            &.meta {
+              font-size: 14px;
+              position: absolute;
+              display: block;
+              right: 0;
+              z-index: 2;
 
-              &.hidden {
-                display: none;
+              span {
+                display: inline;
+
+                &.hidden {
+                  display: none;
+                }
               }
             }
-          }
-
-          p.subtext {
-            font-size: 18px;
-            line-height: 24px;
+            .subtext {
+              font-size: 18px;
+              line-height: 24px;
+            }
           }
         }
       }

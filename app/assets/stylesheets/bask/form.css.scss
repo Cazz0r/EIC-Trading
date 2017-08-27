@@ -17,7 +17,7 @@ body div.bask-wrapper div.element.form {
   }
 
   div.input-group {
-    padding-top: 16px;
+    padding-top: 8px;
 
     &:nth-of-type(1) {
       padding-top: 0;
@@ -33,6 +33,7 @@ body div.bask-wrapper div.element.form {
       padding: 8px 10px 6px 10px;
       color: black;
       width: 100%;
+      font-size: 14px;
     }
 
     button {
@@ -41,7 +42,8 @@ body div.bask-wrapper div.element.form {
       padding: 8px 10px 6px 10px;
       color: black;
       display: inline-block;
-      margin-left: 16px;
+      margin-left: 8px;
+      font-size: 14px;
 
       &:nth-of-type(1) {
         margin-left: 0;

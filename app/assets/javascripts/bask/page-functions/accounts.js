@@ -62,6 +62,7 @@ page.accounts = {
   depositWithdraw: function(current_credits) {
     var dw_val = $('#deposit_withdraw').val();
     if(blank(dw_val)) { return; }
+    dw_val = dw_val.replace(/\s|\+/g, '');
     var new_credits = current_credits + parseInt(dw_val);
     page.errors.clear();
     ShowLoading();
