@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170817230626) do
+ActiveRecord::Schema.define(version: 20170827205624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 20170817230626) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "account_type"
+    t.string "account_hash"
+    t.index ["account_hash"], name: "index_accounts_on_account_hash"
     t.index ["account_type"], name: "index_accounts_on_account_type"
     t.index ["name"], name: "index_accounts_on_name"
   end

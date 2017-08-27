@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
   def redirect_to_home_without_session
     return redirect_to '/' if @session_user.blank?
   end
+
+  def redirect_to_route(route)
+  	return redirect_to route
+  end
 end

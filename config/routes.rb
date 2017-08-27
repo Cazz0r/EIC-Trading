@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/dashboard' => 'dashboard#index'
   resources :cmdrs
   resources :accounts
+  get '/s/:hash' => 'accounts#statement'
 
   # Default index route
   get '/' => 'default#index', as: :root

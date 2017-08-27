@@ -1,4 +1,4 @@
-<% if @session_user %>
+<% if @session_user && !@hide_nav %>
 	<div class="nav">
 		<a href="/accounts" class="<%= @accounts_on ? 'active' : '' %>">ACCOUNTS
 		</a><a href="/cmdrs" class="<%= @cmdrs_on ? 'active' : '' %>">EIC CMDRS

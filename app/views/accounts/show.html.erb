@@ -1,6 +1,6 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @account.type_with_name %> &middot; <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Trade Event</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a></h3>
+    <h3><%= @account.type_with_name %> &middot; <a onClick="page.toggleElement('div.edit-account');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-account');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Trade Event</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a> &middot; <a href="/s/<%= @account.account_hash %>" target="_blank">Statement</a></h3>
      <p class="text">Account has <strong><%= @account.credit_count %> credits.</strong><% if !@account.discord_name.blank? %> Known on Discord as <strong><%= @account.discord_name %></strong>.<% end %></p>
   </div>
 
