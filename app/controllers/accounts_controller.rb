@@ -21,7 +21,8 @@ class AccountsController < ApplicationController
   def statement
     @account = Account.find_by_account_hash(params[:hash])
     return redirect_to_route('/') if @account.blank?
-    @socialmeta = {title: ": #{@account.name} Statement"}
+    @socialmeta = {title: "EIC: #{@account.name} Statement"}
     @hide_nav = true
+    @trade_events = TradeEvent.includes(:user).where(account_id: @account.id).order("created_at desc")
   end
 end

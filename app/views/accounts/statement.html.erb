@@ -1,1 +1,21 @@
-This page is coming soon!
+<div class="bask-wrapper">
+  <div class="element">
+    <h3><%= @account.name %> Account Statement</p>
+  </div>
+
+  <div class="element model-list">
+    <% @trade_events.each do |trade_event| %>
+      <div class="listing">
+        <div class="main two-wide">
+          <div class="left">
+            <div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div>
+          </div>
+          <div class="right">
+            <p class="meta">CMDR <%= trade_event.user.username %> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="quote">"<%= trade_event.content %>"</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
