@@ -22,7 +22,7 @@ page.orders = {
       dataType: 'json',
       success: function(response) {
         HideLoading();
-        window.location = '/orders/' + response.order.id;
+        setTimeout(function(){ window.location = '/orders/' + response.order.id; }, 200);
       },
       error: function(response) {
         HideLoading();
@@ -50,7 +50,26 @@ page.orders = {
       dataType: 'json',
       success: function(response) {
         HideLoading();
-        location.reload();
+        setTimeout(function(){ location.reload(); }, 200);
+      },
+      error: function(response) {
+        HideLoading();
+        page.errors.set(response.responseJSON);
+      }
+    });
+  },
+  deleteOrder: function() {
+    page.errors.clear();
+    ShowLoading();
+    $.ajax({
+      url: '/api/v1/orders/' + page.getId(),
+      type: 'DELETE',
+      data: {},
+      traditional: true,
+      dataType: 'json',
+      success: function(response) {
+        HideLoading();
+        setTimeout(function(){ window.location = '/orders'; }, 200);
       },
       error: function(response) {
         HideLoading();

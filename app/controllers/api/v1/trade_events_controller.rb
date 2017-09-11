@@ -31,7 +31,7 @@ class Api::V1::TradeEventsController < Api::V1::BaseController
 
   private
   def trade_event_params
-    params.require(:trade_event).permit(:content, :account_id)
+    params.require(:trade_event).permit(:content, :account_id, :order_id)
   end
 
   def render_trade_events(status)

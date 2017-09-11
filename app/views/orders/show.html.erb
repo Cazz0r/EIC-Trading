@@ -1,7 +1,9 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @order.account.name %> <%= @order.type_text%> &middot; <a onClick="page.toggleElement('div.edit-order');">Edit Order</a></h3>
-    <p class="text"><%= @order.description %></p>
+    <h3><%= @order.account.name %> <%= @order.type_text%> &middot; <a onClick="page.toggleElement('div.edit-order');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-order');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Note</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a> &middot; <a href="/accounts/<%= @order.account.id %>">View Account</a> &middot; <a href="/t/<%= @order.order_hash %>" target="_blank">Summary</a></h3>
+    <p class="text"><strong>Detail: </strong><%= @order.description %></p>
+    <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
+    <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %></p>
   </div>
   
   <div class="element edit-order form bound hidden">
@@ -15,7 +17,7 @@
     </div>
     <div class="input-group">
       <label for="order_details">Details</label>
-      <textarea placeholder="Trade/Order details... I.E. 25 Modular terminals." id="order_details"></textarea>
+      <textarea placeholder="Trade/Order details... I.E. 25 Modular terminals." id="order_details"><%= @order.description %></textarea>
     </div>
     <div class="input-group">
       <label for="order_account_id">Account *</label>
@@ -27,6 +29,30 @@
     </div>
     <div class="input-group">
       <button onclick="page.orders.updateOrder();">Update Order</button>
+    </div>
+  </div>
+
+  <div class="element delete-order hidden">
+    <p class="text">Really delete this order? <a onClick="page.orders.deleteOrder();"><strong>Jettison (Abandon)</strong></a> &middot; <a onClick="page.toggleElement('div.delete-order');">Cancel</a></p>
+  </div>
+
+  <div class="element add-trade-event form hidden">
+    <div class="input-group">
+      <label for="trade_event_input">Note</label>
+      <input type="text" placeholder="i.e. I am waiting to hear back from this CMDR." id="trade_event_input"  />
+    </div>
+    <div class="input-group">
+      <button onclick="page.tradeEvents.createTradeEventForOrder();">Add Note</button>
+    </div>
+  </div>
+
+  <div class="element deposit-withdraw form bound hidden">
+    <div class="input-group">
+      <label for="deposit_withdraw">Deposit/Withdraw from <a href="/accounts/<%= @order.account.id %>"><%= @order.account.name %></a></label>
+      <input type="text" placeholder="i.e. -100 or 75 or -10 etc..." id="deposit_withdraw"  />
+    </div>
+    <div class="input-group">
+      <button onclick="page.accounts.depositWithdrawFrom(<%= @order.account.id %>, <%= @order.account.credit_count %>);">Apply</button>
     </div>
   </div>
 
@@ -54,7 +80,7 @@
               <input type="text" placeholder="i.e. Contributed 25 MTs." id="trade_event_input_<%= trade_event.id %>" value="<%= trade_event.content %>" />
             </div>
             <div class="input-group">
-              <button onclick="page.tradeEvents.updateTradeEvent(<%= trade_event.id %>);">Update Trade Event
+              <button onclick="page.tradeEvents.updateTradeEvent(<%= trade_event.id %>);">Update Note
               </button><button onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Cancel</button>
             </div>
           </div>

@@ -13,7 +13,7 @@ page.dashboard = {
       dataType: 'json',
       success: function(response) {
         HideLoading();
-        window.location = '/';
+        setTimeout(function(){ window.location = '/'; }, 200);
       },
       error: function(response) {
         HideLoading();
