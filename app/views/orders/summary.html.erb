@@ -1,1 +1,28 @@
-summary.html.erb
+<div class="bask-wrapper">
+  <div class="element">
+    <h3><%= @order.account.name %> Trade Summary &middot; <a onClick="page.toggleElement('div.leave-testimonial');">Leave Testimonial</a></h3>
+    <p class="text"><strong>Detail: </strong><%= @order.description %></p>
+    <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
+    <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %></p>
+  </div>
+
+  <div class="element leave-testimonial form hidden">
+    <p class="text">This feature is coming soon! Get in touch with us on Discord to leave a testimonial.</p>
+  </div>
+
+  <div class="element model-list">
+    <% @trade_events.each do |trade_event| %>
+      <div class="listing">
+        <div class="main two-wide">
+          <div class="left">
+            <div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div>
+          </div>
+          <div class="right">
+            <p class="meta">CMDR <%= trade_event.user.username %> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="quote">"<%= trade_event.content %>"</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
