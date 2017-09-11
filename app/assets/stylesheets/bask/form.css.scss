@@ -18,6 +18,7 @@ body div.bask-wrapper div.element.form {
 
   div.input-group {
     padding-top: 8px;
+    &.hidden { display: none; }
 
     &:nth-of-type(1) {
       padding-top: 0;
@@ -25,6 +26,10 @@ body div.bask-wrapper div.element.form {
 
     label {
       padding-bottom: 4px;
+    }
+
+    textarea {
+      min-height: 100px;
     }
 
     input[type="text"], input[type="number"], input[type="password"], textarea {

@@ -17,6 +17,8 @@ body {
   }
 
   div.bask-wrapper {
+    padding-bottom: 8px;
+
     div.element {
       padding: 8px 8px 0 8px;
       overflow: hidden;
@@ -67,7 +69,7 @@ body {
       font-weight: 400;
       padding: 4px;
       text-decoration: none;
-      width: 33.3333333333333333333%;
+      width: 25%;
       transition: background-color 0.2s;
 
       &.active, &:hover {

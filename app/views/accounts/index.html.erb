@@ -5,7 +5,7 @@
   
   <div class="element create-account form bound hidden">
     <div class="input-group">
-      <label for="account_name">Account Name</label>
+      <label for="account_name">Account Name *</label>
       <input type="text" placeholder="Account name" id="account_name" />
     </div>
     <div class="input-group">
@@ -13,8 +13,8 @@
       <input type="text" placeholder="Discord handle" id="account_discord_name" />
     </div>
     <div class="input-group">
-      <label for="account_type">Type (0 = CMDR, 1 = Player Group)</label>
-      <input type="number" placeholder="Account type" id="account_type" />
+      <label for="account_account_type">Type *</label>
+      <%= select("account", "account_type", [["CMDR", ACCOUNT_CMDR],["Player Group", ACCOUNT_GROUP]], {}, class: "styled-select grey rounded", value: ACCOUNT_CMDR) %>
     </div>
     <div class="input-group">
       <label for="credit_count">Credits (WITHOUT + or -)</label>

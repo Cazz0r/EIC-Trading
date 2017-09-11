@@ -1,0 +1,48 @@
+<div class="bask-wrapper">
+  <div class="element">
+    <h3>Orders &middot; <a onClick="page.toggleElement('div.create-order');">New Order</a></h3>
+    <p class="text">This section is still in development and is not ready for use.</p>
+  </div>
+  
+  <div class="element create-order form bound hidden">
+    <div class="input-group">
+      <label for="order_type">Type *</label>
+      <%= select("order", "order_type", [["Order", ORDER_BUY],["Contribution", ORDER_CONTRIBUTE]], {}, class: "styled-select grey rounded", value: ORDER_BUY) %>
+    </div>
+    <div class="input-group hidden">
+      <label for="order_status">Status *</label>
+      <%= select("order", "status", [["Open", ORDER_OPEN],["Closed", ORDER_CLOSED],["Canceled", ORDER_CANCELED]], {}, class: "styled-select grey rounded", value: ORDER_OPEN) %>
+    </div>
+    <div class="input-group">
+      <label for="order_details">Details</label>
+      <textarea placeholder="Trade/Order details... I.E. 25 Modular terminals." id="order_details"></textarea>
+    </div>
+    <div class="input-group">
+      <label for="order_account_id">Account *</label>
+      <%= select("order", "account_id", Account.all.order("name asc").collect {|a| [a.name, a.id]}, {prompt: 'Select Account'}, class: "styled-select grey rounded") %>
+    </div>
+    <div class="input-group">
+      <label for="order_user_id">Assigned CMDR *</label>
+      <%= select("order", "user_id", User.all.order("username asc").collect {|a| [a.username, a.id]}, {prompt: 'Select CMDR'}, class: "styled-select grey rounded") %>
+    </div>
+    <div class="input-group">
+      <button onclick="page.orders.createOrder();">Create Order</button>
+    </div>
+  </div>
+
+  <div class="element model-list">
+    <% @orders.each do |order| %>
+      <div class="listing <%= order.is_open ? '' : 'disabled' %>">
+        <div class="main two-wide without-image">
+          <div class="right">
+            <p class="meta"><%= order.status_text %> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a></p>
+            <p class="subtext"><%= order.description %></p>
+          </div>
+        </div>
+        <div class="tools hidden">
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

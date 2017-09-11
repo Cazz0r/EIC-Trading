@@ -20,7 +20,15 @@ var page = {
     },
     set: function(response) {
       $('div.errors').addClass('show');
-      $('div.errors p.detail').html((blank(response) || blank(response.errors)) ? "Server error. Contact an admin." : response.errors[0].code == 0 ? capitalizeFirstLetter(response.errors[0].title) + ' ' + response.errors[0].detail: response.errors[0].detail);
+      $('div.errors p.detail').html((blank(response) || blank(response.errors)) ? "Server error. Contact an admin." : response.errors[0].code == 0 ? capitalizeFirstLetter(response.errors[0].title) + ' ' + response.errors[0].detail : response.errors[0].detail);
+    },
+    custom: function(str) {
+      return {
+        errors: [{
+          code: 100000,
+          detail: str
+        }]
+      };
     }
   }
 };

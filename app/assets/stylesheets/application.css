@@ -16,5 +16,6 @@
  *= require bask/template
  *= require bask/form
  *= require bask/model_list
+ *= require bask/select
  *= require_self
  */

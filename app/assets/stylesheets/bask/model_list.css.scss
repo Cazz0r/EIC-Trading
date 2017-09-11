@@ -9,6 +9,11 @@ body div.bask-wrapper div.element.model-list {
       margin-top: 0;
     }
 
+    &.disabled {
+      opacity: 0.5;
+      filter: blur(1px);
+    }
+
     div.main {
       &.two-wide {
         &.without-image {

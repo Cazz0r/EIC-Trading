@@ -40,3 +40,8 @@ en:
       code: 7
       title: "Lookup Parameters Required"
       detail: "Required parameters were missing from the request."
+    account_required:
+      status: 422
+      code: 8
+      title: "Account Required"
+      detail: "An account must be provided."

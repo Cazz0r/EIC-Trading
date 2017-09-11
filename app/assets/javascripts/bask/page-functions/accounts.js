@@ -86,7 +86,7 @@ page.accounts = {
     return {
       'account[name]': $('#account_name').val(),
       'account[discord_name]': $('#account_discord_name').val(),
-      'account[account_type]': $('#account_type').val(),
+      'account[account_type]': $('#account_account_type').val(),
       'account[credits]': $('#credit_count').val(),
     };
   }

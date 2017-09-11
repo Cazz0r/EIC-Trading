@@ -14,8 +14,8 @@
       <input type="text" placeholder="Discord handle" id="account_discord_name" value="<%= @account.discord_name %>" />
     </div>
     <div class="input-group">
-      <label for="account_type">Type (0 = CMDR, 1 = Player Group)</label>
-      <input type="number" placeholder="Account type" id="account_type" value="<%= @account.account_type %>" />
+      <label for="account_account_type">Type</label>
+      <%= select("account", "account_type", [["CMDR", ACCOUNT_CMDR],["Player Group", ACCOUNT_GROUP]], {}, class: "styled-select grey rounded", value: @account.account_type) %>
     </div>
     <div class="input-group">
       <label for="credit_count">Credits (WITHOUT + or -)</label>
