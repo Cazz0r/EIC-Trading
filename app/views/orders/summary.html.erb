@@ -1,28 +1,67 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @order.account.name %> Trade Summary &middot; <a onClick="page.toggleElement('div.leave-testimonial');">Leave Testimonial</a></h3>
+    <h3><%= @order.account.name %> Trade Summary &middot; <a onClick="page.toggleElement('div.leave-testimonial');">Give Testimonial</a></h3>
     <p class="text"><strong>Detail: </strong><%= @order.description %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %></p>
+    <p class="text"><strong>EIC CMDR: </strong><%= @order.user.username %></p>
   </div>
 
-  <div class="element leave-testimonial form hidden">
-    <p class="text">This feature is coming soon! Get in touch with us on Discord to leave a testimonial.</p>
+  <div class="element leave-testimonial form bound hidden">
+    <div class="input-group hidden">
+      <input id="testimonial_account_id" type="number" min="0" step="1" value="<%= @order.account_id %>"/>
+    </div>
+    <div class="input-group hidden">
+      <input id="testimonial_order_id" type="number" min="0" step="1" value="<%= @order.id %>"/>
+    </div>
+    <div class="input-group">
+      <label for="testimonial_content">Give Testimonial</label>
+      <textarea placeholder="EIC is awesome and I love them!!!1!" id="testimonial_content"></textarea>
+    </div>
+    <div class="input-group">
+      <button onclick="page.testimonials.createTestimonial();">Give Testimonial</button>
+    </div>
   </div>
 
-  <div class="element model-list">
-    <% @trade_events.each do |trade_event| %>
-      <div class="listing">
-        <div class="main two-wide">
-          <div class="left">
-            <div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div>
+  <% unless @testimonials.blank? %>
+    <div class="element">
+      <h3>Testimonials</h3>
+    </div>
+    <div class="element model-list">
+      <% @testimonials.each do |testimonial| %>
+        <div class="listing">
+          <div class="main two-wide without-image">
+            <div class="right">
+              <p class="meta">Given <%= testimonial.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+              <p class="quote">"<%= testimonial.content %>"</p>
+              <p class="subtext">- <%= testimonial.account.account_type_string %> <%= testimonial.account.name %></p>
+            </div>
           </div>
-          <div class="right">
-            <p class="meta">CMDR <%= trade_event.user.username %> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
-            <p class="quote">"<%= trade_event.content %>"</p>
+          <div class="tools hidden">
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% unless @trade_events.blank? %>
+    <div class="element">
+      <h3>Recent Notes</h3>
+    </div>
+    <div class="element model-list">
+      <% @trade_events.each do |trade_event| %>
+        <div class="listing">
+          <div class="main two-wide">
+            <div class="left">
+              <div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div>
+            </div>
+            <div class="right">
+              <p class="meta">CMDR <%= trade_event.user.username %> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+              <p class="quote">"<%= trade_event.content %>"</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

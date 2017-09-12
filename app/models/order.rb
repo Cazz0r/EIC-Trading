@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
   # order_type: 0 - order, 1 - contribution
   # status: 0 - open, 1 - closed, 2 - canceled
   has_many :trade_events, dependent: :destroy
+  has_many :testimonials, dependent: :destroy
   belongs_to :user
   belongs_to :account
   after_create :fill_order_hash

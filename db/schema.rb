@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911221011) do
+ActiveRecord::Schema.define(version: 20170912155207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 20170911221011) do
     t.index ["order_type"], name: "index_orders_on_order_type"
     t.index ["status"], name: "index_orders_on_status"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "testimonials", force: :cascade do |t|
+    t.text "content", null: false
+    t.integer "account_id"
+    t.integer "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_testimonials_on_account_id"
+    t.index ["order_id"], name: "index_testimonials_on_order_id"
   end
 
   create_table "trade_events", force: :cascade do |t|
