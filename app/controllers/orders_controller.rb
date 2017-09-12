@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.includes(:account, :user).find_by_id(params[:id])
     @trade_events = TradeEvent.includes(:user).where("order_id=#{@order.id} AND account_id IS NULL").order("created_at desc")
+    @testimonials = Testimonial.includes(:account).where(order_id: @order.id).order("created_at desc")
     @orders_on = true
     @socialmeta = {title: "EIC: #{@order.account.name}"}
   end
@@ -21,5 +22,6 @@ class OrdersController < ApplicationController
     @socialmeta = {title: "EIC: #{@order.account.name} Summary"}
     @hide_nav = true
     @trade_events = TradeEvent.includes(:user).where("order_id=#{@order.id} AND account_id IS NULL").order("created_at desc")
+    @testimonials = Testimonial.includes(:account).where(order_id: @order.id).order("created_at desc")
   end
 end

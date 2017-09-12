@@ -45,3 +45,13 @@ en:
       code: 8
       title: "Account Required"
       detail: "An account must be provided."
+    order_required:
+      status: 422
+      code: 9
+      title: "Order Required"
+      detail: "An order must be provided."
+    testimonial_required:
+      status: 422
+      code: 10
+      title: "Testimonial Required"
+      detail: "A testimonial must be provided."

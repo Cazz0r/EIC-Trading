@@ -4,6 +4,7 @@
     <p class="text"><strong>Detail: </strong><%= @order.description %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %></p>
+    <p class="text"><strong>EIC CMDR: </strong><a href="/cmdrs/<%= @order.user.id %>"><%= @order.user.username %></a></p>
   </div>
   
   <div class="element edit-order form bound hidden">
@@ -56,36 +57,67 @@
     </div>
   </div>
 
-  <div class="element model-list">
-    <% @trade_events.each do |trade_event| %>
-      <div class="listing">
-        <div class="main two-wide">
-          <div class="left">
-            <a href="/cmdrs/<%= trade_event.user.id %>"><div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div></a>
-          </div>
-          <div class="right">
-            <p class="meta">
-              <a onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Edit</a> &middot;
+  <% unless @testimonials.blank? %>
+    <div class="element">
+      <h3>Testimonials</h3>
+    </div>
+    <div class="element model-list">
+      <% @testimonials.each do |testimonial| %>
+        <div class="listing">
+          <div class="main two-wide without-image">
+            <div class="right">
+              <p class="meta">
+                <span class="really-delete-test-<%= testimonial.id %> hidden"> Really? <a onclick="page.testimonials.deleteTestimonial(<%= testimonial.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-test-<%= testimonial.id %>');page.toggleElement('a.start-delete-test-<%= testimonial.id %>');">No</a></span>
+                <a onclick="page.toggleElement('span.really-delete-test-<%= testimonial.id %>');page.toggleElement('a.start-delete-test-<%= testimonial.id %>');" class="start-delete-test-<%= testimonial.id %>">Delete</a> &middot;
 
-              <span class="really-delete-<%= trade_event.id %> hidden"> Really? <a onclick="page.tradeEvents.deleteTradeEvent(<%= trade_event.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');">No</a></span>
-              <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');" class="start-delete-<%= trade_event.id %>">Delete</a> &middot;
-              
-              <a href="/cmdrs/<%= trade_event.user.id %>"><%= trade_event.user.username %></a> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
-            <p class="quote">"<%= trade_event.content %>"</p>
-          </div>
-        </div>
-        <div class="tools edit-trade-event-<%= trade_event.id %> hidden">
-          <div class="element form">
-            <div class="input-group">
-              <input type="text" placeholder="i.e. Contributed 25 MTs." id="trade_event_input_<%= trade_event.id %>" value="<%= trade_event.content %>" />
-            </div>
-            <div class="input-group">
-              <button onclick="page.tradeEvents.updateTradeEvent(<%= trade_event.id %>);">Update Note
-              </button><button onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Cancel</button>
+                Given <%= testimonial.created_at.utc.to_formatted_s(:long_ordinal) %> UTC
+              </p>
+              <p class="quote">"<%= testimonial.content %>"</p>
+              <p class="subtext">- <%= testimonial.account.account_type_string %> <%= testimonial.account.name %></p>
             </div>
           </div>
+          <div class="tools hidden">
+          </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% unless @trade_events.blank? %>
+    <div class="element">
+      <h3>Recent Notes</h3>
+    </div>
+    <div class="element model-list">
+      <% @trade_events.each do |trade_event| %>
+        <div class="listing">
+          <div class="main two-wide">
+            <div class="left">
+              <a href="/cmdrs/<%= trade_event.user.id %>"><div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div></a>
+            </div>
+            <div class="right">
+              <p class="meta">
+                <a onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Edit</a> &middot;
+
+                <span class="really-delete-<%= trade_event.id %> hidden"> Really? <a onclick="page.tradeEvents.deleteTradeEvent(<%= trade_event.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');">No</a></span>
+                <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');" class="start-delete-<%= trade_event.id %>">Delete</a> &middot;
+                
+                <a href="/cmdrs/<%= trade_event.user.id %>"><%= trade_event.user.username %></a> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+              <p class="quote">"<%= trade_event.content %>"</p>
+            </div>
+          </div>
+          <div class="tools edit-trade-event-<%= trade_event.id %> hidden">
+            <div class="element form">
+              <div class="input-group">
+                <input type="text" placeholder="i.e. Contributed 25 MTs." id="trade_event_input_<%= trade_event.id %>" value="<%= trade_event.content %>" />
+              </div>
+              <div class="input-group">
+                <button onclick="page.tradeEvents.updateTradeEvent(<%= trade_event.id %>);">Update Note
+                </button><button onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
