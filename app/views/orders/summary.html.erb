@@ -3,6 +3,7 @@
     <h3><%= @order.account.name %> Trade Summary &middot; <a onClick="page.toggleElement('div.leave-testimonial');">Give Testimonial</a></h3>
     <p class="text"><strong>Detail: </strong><%= @order.description %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
+    <p class="text"><strong>Platform: </strong><%= @order.platform_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %></p>
     <p class="text"><strong>EIC CMDR: </strong><%= @order.user.username %></p>
   </div>
@@ -21,6 +22,18 @@
     <div class="input-group">
       <button onclick="page.testimonials.createTestimonial();">Give Testimonial</button>
     </div>
+  </div>
+
+  <div class="element notice-text">
+    <h3><strong>Thank you <%= @order.account.account_type_string %> <%= @order.account.name %> for your order.</strong></h3>
+    <p class="text">Our traders will be sourcing your goods as soon as possible.</p>
+    <p class="text">We will ping you on EIC Trading Post Discord to let you know your order is ready and who you will be trading with. You must then get Palladium, Collector Controllers (the minimum is 2 Class 3 for 4 active limpets) and 10-15 limpets. Do not turn up to collect 50 tons of goods with only 1 or 2 limpets please it takes far too long and the CMDR will refuse to trade. Then, come to LTT 1349 and let the CMDR know you are ready. The CMDR will send Friend and Wing requests then trade with you as soon as possible. We only operate in Open.</p>
+    <p class="text"><strong>PLEASE NOTE:</strong></p>
+    <ul>
+      <li>If we ping you 3 times over 48 hours and don't get a reply your order will be cancelled.</li>
+      <li>If you arrive at the trade location without payment or means of collection we will move you to the end of the waiting list.</li>
+      <li>You may come to a trade armed in case of NPC pirates ( they seem to know when people have Palladium ) but you may not bring another player to the trade location. If our CMDR is not happy with how things are going then they reserve the right to high wake and re-arrange the trade at another time and place.</li>
+    </ul>
   </div>
 
   <% unless @testimonials.blank? %>

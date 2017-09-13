@@ -1,0 +1,19 @@
+body div.bask-wrapper div.element.notice-text {
+  border: 1px solid #f4a009;
+  padding: 8px;
+  margin: 8px 8px 0 8px;
+  background: repeating-linear-gradient(-55deg, #222, #222 10px, #333 10px, #333 20px);
+
+  h3 {
+    margin-bottom: 8px;
+  }
+
+  p.text {
+    line-height: 18px;
+    margin-top: 8px;
+  }
+
+  ul, ul li, p.text {
+    max-width: 1024px;
+  }
+}
