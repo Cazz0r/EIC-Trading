@@ -30,4 +30,14 @@ html, body {
     display: inline;
     font-weight: 600;
   }
+
+  ul {
+    list-style: disc outside none;
+    padding: 8px 0 0 24px;
+    line-height: 18px;
+
+    li {
+      display: list-item;
+    }
+  }
 }
