@@ -81,6 +81,7 @@ page.orders = {
     return {
       'order[order_type]': $('#order_order_type').val(),
       'order[status]': $('#order_status').val(),
+      'order[platform]': $('#order_platform').val(),
       'order[description]': $('#order_details').val(),
       'order[account_id]': $('#order_account_id').val(),
       'order[user_id]': $('#order_user_id').val(),

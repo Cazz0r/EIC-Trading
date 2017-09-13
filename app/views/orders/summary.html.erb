@@ -3,6 +3,7 @@
     <h3><%= @order.account.name %> Trade Summary &middot; <a onClick="page.toggleElement('div.leave-testimonial');">Give Testimonial</a></h3>
     <p class="text"><strong>Detail: </strong><%= @order.description %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
+    <p class="text"><strong>Platform: </strong><%= @order.platform_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %></p>
     <p class="text"><strong>EIC CMDR: </strong><%= @order.user.username %></p>
   </div>

@@ -13,7 +13,6 @@ class Api::V1::OrdersController < Api::V1::BaseController
   def create
     return custom_error([:account_required]) unless order_params && !order_params[:account_id].blank?
     @order = Order.new(order_params)
-    @order.user = @session_user
     return ar_error(@order) unless @order.save
     remder_order(201)
   end
@@ -30,7 +29,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
   private
   def order_params
-    params.require(:order).permit(:description, :account_id, :user_id, :order_type, :status)
+    params.require(:order).permit(:description, :account_id, :user_id, :order_type, :status, :platform)
   end
 
   def render_orders(status)
