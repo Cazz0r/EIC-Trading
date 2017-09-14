@@ -20,7 +20,6 @@ page.orders = {
     // Once error states pass, send the order to the server and create new account if a name exists
     ShowLoading();
     if(page.orders.hasNewAccountOnOrder()) {
-      console.log(1);
       $.ajax({
         url: '/api/v1/accounts',
         type: 'POST',

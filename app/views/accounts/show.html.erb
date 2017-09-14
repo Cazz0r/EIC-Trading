@@ -59,6 +59,8 @@
           </div>
           <div class="right">
             <p class="meta">
+              <% if trade_event.order %><a href="/orders/<%= trade_event.order.id %>">View Order</a> &middot; <% end %>
+              
               <a onclick="page.toggleElement('div.edit-trade-event-<%= trade_event.id %>');">Edit</a> &middot;
 
               <span class="really-delete-<%= trade_event.id %> hidden"> Really? <a onclick="page.tradeEvents.deleteTradeEvent(<%= trade_event.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');">No</a></span>

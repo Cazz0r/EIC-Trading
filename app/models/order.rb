@@ -18,21 +18,15 @@ class Order < ActiveRecord::Base
   end
 
   def type_text
-    return "Order" if self.order_type == ORDER_BUY
-    return "Contribution" if self.order_type == ORDER_CONTRIBUTE
+    OrderHelper.type_text(self.order_type)
   end
 
   def status_text
-    return "Pending" if self.status == ORDER_OPEN
-    return "Underway" if self.status == ORDER_UNDERWAY
-    return "Complete" if self.status == ORDER_CLOSED
-    return "Canceled" if self.status == ORDER_CANCELED
+    OrderHelper.status_text(self.status)
   end
 
   def platform_text
-    return "PC" if self.platform == ORDER_PLATFORM_PC
-    return "XBOX" if self.platform == ORDER_PLATFORM_XBOX
-    return "PS4" if self.platform == ORDER_PLATFORM_PS4
+    OrderHelper.platform_text(self.platform)
   end
 
   def is_open
