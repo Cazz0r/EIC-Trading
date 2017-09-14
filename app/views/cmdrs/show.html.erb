@@ -32,7 +32,7 @@
             <div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div>
           </div>
           <div class="right">
-            <p class="meta"><% if trade_event.order %><a href="/orders/<%= trade_event.order.id %>">View Order</a><% end %><% if trade_event.account %><a href="/accounts/<%= trade_event.account.id %>"><%= trade_event.account.name %> Account</a><% end %> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="meta"><% if trade_event.order %><a href="/orders/<%= trade_event.order.id %>">View Order</a> &middot; <% end %><% if trade_event.account %><a href="/accounts/<%= trade_event.account.id %>"><%= trade_event.account.name %> Account</a> &middot; <% end %><%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="quote">"<%= trade_event.content %>"</p>
           </div>
         </div>
