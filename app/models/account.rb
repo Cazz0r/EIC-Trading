@@ -6,6 +6,7 @@ class Account < ActiveRecord::Base
   validates :name, presence: true
   validates_uniqueness_of :name
   has_many :trade_events, dependent: :destroy
+  has_many :orders, dependent: :destroy
   after_create :fill_account_hash
 
   def type_with_name
