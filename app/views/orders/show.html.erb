@@ -27,7 +27,7 @@
     </div>
     <div class="input-group">
       <label for="order_account_id">Account *</label>
-      <%= select("order", "account_id", Account.all.order("name asc").collect {|a| [a.name, a.id]}, {prompt: 'Select Account'}, class: "styled-select grey rounded", value: @order.account.id) %>
+      <%= select("order", "account_id", Account.all.order("name asc").collect {|a| [a.name, a.id]}, {prompt: 'Select Account'}, class: "styled-select grey rounded existing-accounts", value: @order.account.id) %>
     </div>
     <div class="input-group">
       <label for="order_user_id">Assigned CMDR *</label>

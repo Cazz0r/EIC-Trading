@@ -22,8 +22,14 @@
       <textarea placeholder="Trade/Order details... I.E. 25 Modular terminals." id="order_details"></textarea>
     </div>
     <div class="input-group">
-      <label for="order_account_id">Account *</label>
-      <%= select("order", "account_id", Account.all.order("name asc").collect {|a| [a.name, a.id]}, {prompt: 'Select Account'}, class: "styled-select grey rounded") %>
+      <label for="order_account_id">Account *
+      <a class="new-account" onClick="page.toggleElement('a.cancel-new-account');page.toggleElement('select.existing-accounts');page.toggleElement('.new-account-info');page.toggleElement('a.new-account');page.orders.clearNewAccount();">New</a>
+      <a class="cancel-new-account hidden" onClick="page.toggleElement('a.new-account');page.toggleElement('select.existing-accounts');page.toggleElement('.new-account-info');page.toggleElement('a.cancel-new-account');page.orders.clearNewAccount();">Cancel</a></label>
+      <%= select("order", "account_id", Account.all.order("name asc").collect {|a| [a.name, a.id]}, {prompt: 'Select Account'}, class: "styled-select grey rounded existing-accounts") %>
+      <div class="new-account-info hidden">
+        <%= select("account", "account_type", [["CMDR", ACCOUNT_CMDR],["Player Group", ACCOUNT_GROUP]], {}, class: "styled-select grey rounded", value: ACCOUNT_CMDR) %>
+        <input type="text" placeholder="Account name" id="account_name" style="margin-top: 8px;" />
+      </div>
     </div>
     <div class="input-group">
       <label for="order_user_id">Assigned CMDR *</label>
