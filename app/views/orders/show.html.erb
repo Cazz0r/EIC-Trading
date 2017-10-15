@@ -1,6 +1,8 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @order.account.name %> <%= @order.type_text%> &middot; <a onClick="page.toggleElement('div.edit-order');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-order');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Note</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a> &middot; <a href="/accounts/<%= @order.account.id %>">View Account</a> &middot; <a href="/t/<%= @order.order_hash %>" target="_blank">Summary</a></h3>
+    <h3><%= @order.account.name %> <%= @order.type_text%> &middot; <a onClick="page.toggleElement('div.edit-order');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-order');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Note</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a> &middot; <a href="/t/<%= @order.order_hash %>" target="_blank">Summary</a></h3>
+    <p class="text"><strong>Account: </strong><a href="/accounts/<%= @order.account.id %>"><%= @order.account.name %></a></p>
+    <p class="text"><strong>Discord Handle: </strong><%= @order.account.discord_name %></p>
     <p class="text"><strong>Detail: </strong><%= @order.description %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
     <p class="text"><strong>Platform: </strong><%= @order.platform_text %></p>
