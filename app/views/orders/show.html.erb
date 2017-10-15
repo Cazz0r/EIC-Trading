@@ -1,11 +1,13 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @order.account.name %> <%= @order.type_text%> &middot; <a onClick="page.toggleElement('div.edit-order');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-order');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Note</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a> &middot; <a href="/accounts/<%= @order.account.id %>">View Account</a> &middot; <a href="/t/<%= @order.order_hash %>" target="_blank">Summary</a></h3>
+    <h3><%= @order.account.name %> <%= @order.type_text%> &middot; <a onClick="page.toggleElement('div.edit-order');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-order');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Note</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a> &middot; <a href="/t/<%= @order.order_hash %>" target="_blank">Summary</a></h3>
+    <p class="text"><strong>Account: </strong><a href="/accounts/<%= @order.account.id %>"><%= @order.account.name %></a></p>
+    <p class="text"><strong>Discord Handle: </strong><%= @order.account.discord_name %></p>
     <p class="text"><strong>Detail: </strong><%= @order.description %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
     <p class="text"><strong>Platform: </strong><%= @order.platform_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
-    <p class="text"><strong>EIC CMDR: </strong><a href="/cmdrs/<%= @order.user.id %>"><%= @order.user.username %></a></p>
+    <p class="text"><strong>EIC CMDR: </strong><% if @order.user.blank? %>Unassigned<% else %><a href="/cmdrs/<%= @order.user.id %>"><%= @order.user.username %></a><% end %></p>
   </div>
   
   <div class="element edit-order form bound hidden">
@@ -30,8 +32,9 @@
       <%= select("order", "account_id", Account.all.order("name asc").collect {|a| [a.name, a.id]}, {prompt: 'Select Account'}, class: "styled-select grey rounded existing-accounts", value: @order.account.id) %>
     </div>
     <div class="input-group">
-      <label for="order_user_id">Assigned CMDR *</label>
-      <%= select("order", "user_id", User.all.order("username asc").collect {|a| [a.username, a.id]}, {prompt: 'Select CMDR'}, class: "styled-select grey rounded", value: @order.user.id) %>
+      <label for="order_user_id">Assigned CMDR</label>
+      <%  %>
+      <%= select("order", "user_id", @all_users, {prompt: 'Unassigned'}, class: "styled-select grey rounded", value: @order.user ? @order.user.id : nil) %>
     </div>
     <div class="input-group">
       <button onclick="page.orders.updateOrder();">Update Order</button>

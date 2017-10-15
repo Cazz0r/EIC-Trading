@@ -14,6 +14,8 @@ class OrdersController < ApplicationController
     @testimonials = Testimonial.includes(:account).where(order_id: @order.id).order("created_at desc")
     @orders_on = true
     @socialmeta = {title: "EIC: #{@order.account.name}"}
+    @all_users = User.all.order("username asc").collect {|a| [a.username, a.id]}
+    @all_users.unshift(["Unassigned", nil]) unless @order.user.blank?
   end
 
   def summary
