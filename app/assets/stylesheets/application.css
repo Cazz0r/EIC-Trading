@@ -18,5 +18,6 @@
  *= require bask/model_list
  *= require bask/select
  *= require bask/notice-text
+ *= require bask/overview-video
  *= require_self
  */
