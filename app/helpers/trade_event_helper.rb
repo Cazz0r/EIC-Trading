@@ -23,7 +23,11 @@ module TradeEventHelper
 
     # If a new CMDR has been assigned to the order then reflect that with an event
     if old_user_id != order.user_id
-      @trade_event = TradeEvent.new({user_id: session_user.id, order_id: order.id, content: "Order assigned to CMDR #{order.user.username}."})
+      if order.user_id.blank?
+        @trade_event = TradeEvent.new({user_id: session_user.id, order_id: order.id, content: "Order was set to unassigned."})
+      else
+        @trade_event = TradeEvent.new({user_id: session_user.id, order_id: order.id, content: "Order assigned to CMDR #{order.user.username}."})
+      end
       @trade_event.save
     end
   end

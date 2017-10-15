@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   # platform: 0 - PC, 1 - XBOX, 2 - PS4
   has_many :trade_events, dependent: :destroy
   has_many :testimonials, dependent: :destroy
-  belongs_to :user
+  belongs_to :user, required: false
   belongs_to :account
   after_create :fill_order_hash
 

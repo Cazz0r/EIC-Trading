@@ -5,7 +5,7 @@
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
     <p class="text"><strong>Platform: </strong><%= @order.platform_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
-    <p class="text"><strong>EIC CMDR: </strong><%= @order.user.username %></p>
+    <p class="text"><strong>EIC CMDR: </strong><% if @order.user.blank? %>Unassigned<% else %><%= @order.user.username %><% end %></p>
   </div>
 
   <div class="element leave-testimonial form bound hidden">

@@ -13,9 +13,11 @@ page.orders = {
     if(!page.orders.hasNewAccountOnOrder() && blank($('#order_account_id').val())) {
       return page.errors.set(page.errors.custom("Please select an account for this order."));
     }
-    if(blank($('#order_user_id').val())) {
-      return page.errors.set(page.errors.custom("Please select a CMDR for this order."));
-    }
+
+    // We no longer require a user to be assigned to orders, but this is the check for whenever we turn that on again.
+    // if(blank($('#order_user_id').val())) {
+    //   return page.errors.set(page.errors.custom("Please select a CMDR for this order."));
+    // }
 
     // Once error states pass, send the order to the server and create new account if a name exists
     ShowLoading();
@@ -65,9 +67,11 @@ page.orders = {
     if(blank($('#order_account_id').val())) {
       return page.errors.set(page.errors.custom("Please select an account for this order."));
     }
-    if(blank($('#order_user_id').val())) {
-      return page.errors.set(page.errors.custom("Please select a CMDR for this order."));
-    }
+
+    // We no longer require a user to be assigned to orders, but this is the check for whenever we turn that on again.
+    // if(blank($('#order_user_id').val())) {
+    //   return page.errors.set(page.errors.custom("Please select a CMDR for this order."));
+    // }
 
     // Once error states pass, send the order to the server
     ShowLoading();
@@ -116,7 +120,7 @@ page.orders = {
       'order[platform]': $('#order_platform').val(),
       'order[description]': $('#order_details').val(),
       'order[account_id]': blank(page.orders.new_account_id) ? $('#order_account_id').val() : page.orders.new_account_id,
-      'order[user_id]': $('#order_user_id').val()
+      'order[user_id]': blank($('#order_user_id').val()) ? null : $('#order_user_id').val()
     };
   }
 }
