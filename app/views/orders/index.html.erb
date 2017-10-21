@@ -46,10 +46,10 @@
 
   <div class="element model-list">
     <% @orders.each do |order| %>
-      <div class="listing <%= order.is_open ? '' : 'disabled' %>">
+      <div class="listing <%= order.is_open ? 'open' : 'disabled' %> <%= order.is_assigned ? 'assigned' : 'not-assigned' %>">
         <div class="main two-wide without-image">
           <div class="right">
-            <p class="meta"><%= order.platform_text %> &middot; <%= order.status_text %> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="meta"><span class="tag"><%= order.platform_text %></span> &middot; <span class="tag"><%= order.status_text %></span> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; <% if order.user.blank? %> Unassigned<% else %>Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a><% end %></p>
             <p class="subtext"><%= order.description %></p>
           </div>
