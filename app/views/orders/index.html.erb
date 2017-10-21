@@ -12,6 +12,10 @@
       <label for="order_platform">Platform *</label>
       <%= select("order", "platform", [["PC", ORDER_PLATFORM_PC],["XBOX", ORDER_PLATFORM_XBOX],["PS4", ORDER_PLATFORM_PS4]], {}, class: "styled-select grey rounded", value: ORDER_PLATFORM_PC) %>
     </div>
+    <div class="input-group">
+      <label for="order_time_window">Time Window *</label>
+      <%= select("order", "time_window", OrderHelper.time_options, {}, class: "styled-select grey rounded", value: 0) %>
+    </div>
     <div class="input-group hidden">
       <label for="order_status">Status *</label>
       <%= select("order", "status", [["Pending", ORDER_OPEN],["Underway", ORDER_UNDERWAY],["Complete", ORDER_CLOSED],["Canceled", ORDER_CANCELED]], {}, class: "styled-select grey rounded", value: ORDER_OPEN) %>
@@ -28,6 +32,7 @@
       <div class="new-account-info hidden">
         <%= select("account", "account_type", [["CMDR", ACCOUNT_CMDR],["Player Group", ACCOUNT_GROUP]], {}, class: "styled-select grey rounded", value: ACCOUNT_CMDR) %>
         <input type="text" placeholder="Account name" id="account_name" style="margin-top: 8px;" />
+        <input type="text" placeholder="Discord name" id="account_discord_name" style="margin-top: 8px;" />
       </div>
     </div>
     <div class="input-group">
@@ -41,10 +46,10 @@
 
   <div class="element model-list">
     <% @orders.each do |order| %>
-      <div class="listing <%= order.is_open ? '' : 'disabled' %>">
+      <div class="listing <%= order.is_open ? 'open' : 'disabled' %> <%= order.is_assigned ? 'assigned' : 'not-assigned' %>">
         <div class="main two-wide without-image">
           <div class="right">
-            <p class="meta"><%= order.platform_text %> &middot; <%= order.status_text %> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="meta"><span class="tag"><%= order.platform_text %></span> &middot; <span class="tag"><%= order.status_text %></span> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; <% if order.user.blank? %> Unassigned<% else %>Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a><% end %></p>
             <p class="subtext"><%= order.description %></p>
           </div>

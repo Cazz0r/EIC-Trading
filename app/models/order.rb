@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Order < ActiveRecord::Base
   strip_attributes
-  # attributes :id, :description, :account_id, :user_id, :order_type, :status, :order_hash, :created_at, :updated_at
+  # attributes :id, :description, :account_id, :user_id, :order_type, :status, :order_hash, :time_window, :created_at, :updated_at
   # order_type: 0 - order, 1 - contribution
   # status: 0 - open, 1 - underway, 2 - closed, 3 - canceled
   # platform: 0 - PC, 1 - XBOX, 2 - PS4
@@ -31,5 +31,17 @@ class Order < ActiveRecord::Base
 
   def is_open
     self.status == ORDER_OPEN || self.status == ORDER_UNDERWAY
+  end
+
+  def is_underway
+    self.status == ORDER_UNDERWAY
+  end
+
+  def is_assigned
+    !self.user.blank?
+  end
+
+  def is_contribution
+    self.order_type == ORDER_CONTRIBUTE
   end
 end

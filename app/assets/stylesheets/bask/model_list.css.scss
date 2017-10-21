@@ -9,10 +9,21 @@ body div.bask-wrapper div.element.model-list {
       margin-top: 0;
     }
 
+    &.open {
+      border-left: 8px solid #61aeb3;
+    }
+
+    &.assigned {
+      border-left: 8px solid #54bd54;
+    }
+
     &.disabled {
       opacity: 0.5;
       filter: blur(1px);
+      border-left: 1px solid #f4a009;
     }
+
+    // &.not-assigned {}
 
     div.main {
       &.two-wide {
@@ -62,6 +73,14 @@ body div.bask-wrapper div.element.model-list {
 
                 &.hidden {
                   display: none;
+                }
+
+                &.tag {
+                  background-color: #f4a008;
+                  border-radius: 4px;
+                  padding: 4px;
+                  color: #544529;
+                  font-weight: 400;
                 }
               }
             }

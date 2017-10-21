@@ -3,6 +3,7 @@
     <h3><%= @order.account.name %> Trade Summary &middot; <a onClick="page.toggleElement('div.leave-testimonial');">Give Testimonial</a></h3>
     <p class="text"><strong>Detail: </strong><%= @order.description %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
+    <p class="text"><strong>Time Window: </strong><%= OrderHelper.time_options[@order.time_window][0] %></p>
     <p class="text"><strong>Platform: </strong><%= @order.platform_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
     <p class="text"><strong>EIC CMDR: </strong><% if @order.user.blank? %>Unassigned<% else %><%= @order.user.username %><% end %></p>
@@ -24,18 +25,27 @@
     </div>
   </div>
 
-  <div class="element notice-text">
-    <h3><strong>Thank you <%= @order.account.account_type_string %> <%= @order.account.name %> for your order.</strong></h3>
-    <p class="text">Our traders will source your goods as soon as possible.</p>
-    <p class="text">Some orders may take a little time to fulfil and we thank you for your patience.</p>
-    <p class="text">We will ping you in #trading-floor to let you know when your order is ready and who you will be trading with. You must then get Palladium (HR 784 Jahn Station is close to us), Collector Controllers (the minimum is 2 Class 3 for 4 active limpets) and 10-15 limpets. Please do not turn up to collect 50 tons of goods with only 1 or 2 active limpets it would take far too long and the CMDR will refuse to trade. Then, come to LTT 1349 and let the CMDR know you are ready. The CMDR will send Friend and Wing requests and may give you a new trade location. We only operate in Open.</p>
-    <p class="text"><strong>PLEASE NOTE:</strong></p>
-    <ul>
-      <li>If we ping you 3 times over 48 hours and don't get a reply your order will be cancelled.</li>
-      <li>If you arrive at the trade location without payment or means of collection we will move you to the end of the waiting list.</li>
-      <li>You may come to a trade armed in case of NPC pirates (they seem to know when people have Palladium) but you may not bring another player to the trade location. If our CMDR is not happy with how things are going then they reserve the right to high wake and re-arrange the trade at another time and place.</li>
-    </ul>
-  </div>
+  <% if @order.is_contribution %>
+    <div class="element notice-text">
+      <h3><strong>Thank you <%= @order.account.account_type_string %> <%= @order.account.name %> for lodging a trade Contribution.</strong></h3>
+      <p class="text">A CMDR will be in touch shortly to collect your goods.</p>
+      <p class="text">Once moved to our ship we will confirm the total and then send you a statement of your account via Discord PM.</p>
+      <p class="text">If you haven’t done so already please tag yourself in the #trading-floor as ?supplier</p>
+    </div>
+  <% else %>
+    <div class="element notice-text">
+      <h3><strong>Thank you <%= @order.account.account_type_string %> <%= @order.account.name %> for your order.</strong></h3>
+      <p class="text">Our traders will source your goods as soon as possible.</p>
+      <p class="text">Some orders may take a little time to fulfil and we thank you for your patience.</p>
+      <p class="text">We will ping you in #trading-floor to let you know when your order is ready and who you will be trading with. You must then get Palladium (HR 784 Jahn Station is close to us), Collector Controllers (the minimum is 2 Class 3 for 4 active limpets) and 10-15 limpets. Please do not turn up to collect 50 tons of goods with only 1 or 2 active limpets it would take far too long and the CMDR will refuse to trade. Then, come to LTT 1349 and let the CMDR know you are ready. The CMDR will send Friend and Wing requests and may give you a new trade location. We only operate in Open.</p>
+      <p class="text"><strong>PLEASE NOTE:</strong></p>
+      <ul>
+        <li>If we ping you 3 times over 48 hours and don't get a reply your order will be cancelled.</li>
+        <li>If you arrive at the trade location without payment or means of collection we will move you to the end of the waiting list.</li>
+        <li>You may come to a trade armed in case of NPC pirates (they seem to know when people have Palladium) but you may not bring another player to the trade location. If our CMDR is not happy with how things are going then they reserve the right to high wake and re-arrange the trade at another time and place.</li>
+      </ul>
+    </div>
+  <% end %>
 
   <% unless @testimonials.blank? %>
     <div class="element">
