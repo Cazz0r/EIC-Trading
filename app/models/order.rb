@@ -32,4 +32,8 @@ class Order < ActiveRecord::Base
   def is_open
     self.status == ORDER_OPEN || self.status == ORDER_UNDERWAY
   end
+
+  def is_contribution
+    self.order_type == ORDER_CONTRIBUTE
+  end
 end
