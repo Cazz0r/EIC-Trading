@@ -123,5 +123,19 @@ page.orders = {
       'order[account_id]': blank(page.orders.new_account_id) ? $('#order_account_id').val() : page.orders.new_account_id,
       'order[user_id]': blank($('#order_user_id').val()) ? null : $('#order_user_id').val()
     };
+  },
+  filterOrders: function() {
+    var order_type = $("select#filter_order_type").val();
+    var platform = $("select#filter_platform").val();
+    var status = $("select#filter_status").val();
+    var account_id = $("select#filter_account_id").val();
+    var newUrl = $.query.set("order_type", order_type).set("platform", platform).set("status", status).set("account_id", account_id).toString();
+    window.location = newUrl;
+  },
+  initOrderFilters: function() {
+    $("select#filter_order_type").change(page.orders.filterOrders);
+    $("select#filter_platform").change(page.orders.filterOrders);
+    $("select#filter_status").change(page.orders.filterOrders);
+    $("select#filter_account_id").change(page.orders.filterOrders);
   }
 }

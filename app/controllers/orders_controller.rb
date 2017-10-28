@@ -3,9 +3,18 @@ class OrdersController < ApplicationController
   before_action :redirect_to_home_without_session, except: [:summary]
 
   def index
+    @params = params
     @orders_on = true
     @socialmeta = {title: "EIC: Orders"}
-    @orders = Order.where("id > 0").order('created_at desc').limit(500)
+    query = QueryHelper.get_simple_query({
+      keys: [
+        {key: :order_type, operator: :and},
+        {key: :platform, operator: :and},
+        {key: :status, operator: :and},
+        {key: :account_id, operator: :and}],
+      params: params
+    })
+    @orders = Order.where(query).order('created_at desc').limit(500)
   end
 
   def show

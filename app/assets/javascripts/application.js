@@ -16,6 +16,7 @@
 
 // Bask Tools
 //= require ./bask/library/jquery-3.2.1.min
+//= require ./bask/library/jquery-plugin-query-object.min
 //= require ./bask/library/moment.min
 //= require ./bask/helpers
 //= require ./bask/page-functions/base
