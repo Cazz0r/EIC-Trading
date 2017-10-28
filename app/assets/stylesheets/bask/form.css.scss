@@ -8,11 +8,36 @@ body div.bask-wrapper div.element.form {
     max-width: 400px;
   }
 
-  &.four-wide {
+  &.inline-form {
     div.input-group {
-      width: 25%;
       display: inline-block;
-      padding: 8px;
+      margin-left: 16px;
+
+      &:nth-of-type(1) {
+        margin-left: 0;
+      }
+    }
+  }
+
+  &.four-wide div.input-group, &.five-wide div.input-group {
+    display: inline-block;
+    padding: 8px;
+  }
+  &.four-wide div.input-group {
+    width: 25%;
+  }
+  &.five-wide div.input-group {
+    width: 20%;
+  }
+  &.inline-labels div.input-group {
+    label, select, input, textarea {
+      display: inline-block;
+    }
+    label {
+      padding-right: 8px;
+    }
+    select, input, textarea {
+      // width: 75%;
     }
   }
 

@@ -123,5 +123,18 @@ page.orders = {
       'order[account_id]': blank(page.orders.new_account_id) ? $('#order_account_id').val() : page.orders.new_account_id,
       'order[user_id]': blank($('#order_user_id').val()) ? null : $('#order_user_id').val()
     };
+  },
+  filterOrders: function() {
+    var order_type = $("select#filter_order_type").val();
+    var order_platform = $("select#filter_platform").val();
+    var order_status = $("select#filter_status").val();
+    console.log(order_type + ' | ' + order_platform + ' | ' + order_status);
+    var newUrl = $.query.set("order_type", order_type).set("platform", order_platform).set("status", order_status).toString();
+    window.location = newUrl;
+  },
+  initOrderFilters: function() {
+    $("select#filter_order_type").change(page.orders.filterOrders);
+    $("select#filter_platform").change(page.orders.filterOrders);
+    $("select#filter_status").change(page.orders.filterOrders);
   }
 }
