@@ -8,10 +8,12 @@
       <label for="filter_order_type">Type</label><%= select("filter", "order_type", options_for_select([["Order", ORDER_BUY],["Contribution", ORDER_CONTRIBUTE]], selected: @params[:order_type]), {prompt: 'Any'}, class: "styled-select grey rounded") %>
 
     </div><div class="input-group">
-      <label for="filter_order_platform">Platform</label><%= select("filter", "platform", options_for_select([["PC", ORDER_PLATFORM_PC],["XBOX", ORDER_PLATFORM_XBOX],["PS4", ORDER_PLATFORM_PS4]], selected: @params[:platform]), {prompt: 'Any'}, class: "styled-select grey rounded") %>
+      <label for="filter_platform">Platform</label><%= select("filter", "platform", options_for_select([["PC", ORDER_PLATFORM_PC],["XBOX", ORDER_PLATFORM_XBOX],["PS4", ORDER_PLATFORM_PS4]], selected: @params[:platform]), {prompt: 'Any'}, class: "styled-select grey rounded") %>
 
     </div><div class="input-group">
-      <label for="filter_order_status">Status</label><%= select("filter", "status", options_for_select([["Pending", ORDER_OPEN],["Underway", ORDER_UNDERWAY],["Complete", ORDER_CLOSED],["Canceled", ORDER_CANCELED]], selected: @params[:status]), {prompt: 'Any'}, class: "styled-select grey rounded") %>
+      <label for="filter_status">Status</label><%= select("filter", "status", options_for_select([["Pending", ORDER_OPEN],["Underway", ORDER_UNDERWAY],["Complete", ORDER_CLOSED],["Canceled", ORDER_CANCELED]], selected: @params[:status]), {prompt: 'Any'}, class: "styled-select grey rounded") %>
+    </div><div class="input-group">
+      <label for="filter_account_id">Account</label><%= select("filter", "account_id", options_for_select(Account.all.order("name asc").collect {|a| [a.name, a.id]}, selected: @params[:account_id]), {prompt: 'Any'}, class: "styled-select grey rounded", class: "styled-select grey rounded") %>
     </div>
   </div>
 

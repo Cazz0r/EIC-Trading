@@ -7,7 +7,11 @@ class OrdersController < ApplicationController
     @orders_on = true
     @socialmeta = {title: "EIC: Orders"}
     query = QueryHelper.get_simple_query({
-      keys: [{key: :order_type, operator: :and}, {key: :platform, operator: :and}, {key: :status, operator: :and}],
+      keys: [
+        {key: :order_type, operator: :and},
+        {key: :platform, operator: :and},
+        {key: :status, operator: :and},
+        {key: :account_id, operator: :and}],
       params: params
     })
     @orders = Order.where(query).order('created_at desc').limit(500)
