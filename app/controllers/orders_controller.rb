@@ -15,6 +15,10 @@ class OrdersController < ApplicationController
       params: params
     })
     @orders = Order.where(query).order('created_at desc').limit(500)
+    respond_to do |format|
+      format.html
+      format.csv
+    end
   end
 
   def show
