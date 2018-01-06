@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
     @orders = Order.where(query).order('created_at desc').limit(500)
     respond_to do |format|
       format.html
-      format.csv
+      # format.csv
     end
   end
 
