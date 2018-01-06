@@ -14,4 +14,8 @@ class Api::V1::ModelLookupCallbacksController < ErrorsController
   def load_order
     @order = not_found?(Order.find_by_id(params[:id]))
   end
+
+  def load_user
+    @user = not_found?(User.find_by_id(params[:id]))
+  end
 end

@@ -1,6 +1,17 @@
 <div class="bask-wrapper">
   <div class="element">
-    <h3><%= @user.username %><% if @cmdr_session_on %> &middot; <a onclick="page.dashboard.signout();">Signout</a><% end %></h3>
+    <h3><%= @user.username %>
+      <% unless @session_user.id == @user.id %> &middot; 
+        <% if @session_user.admin? %>
+          <% if @user.admin? %>
+            <a onclick="page.users.makeUserNotAdmin(<%= @user.id %>)">Un-Admin</a>
+          <% else %>
+            <a onclick="page.users.makeUserAdmin(<%= @user.id %>)">Make Admin</a>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% if @cmdr_session_on %> &middot; <a onclick="page.dashboard.signout();">Signout</a><% end %>
+    </h3>
   </div>
 
   <div class="element model-list">
@@ -10,7 +21,7 @@
           <a href="/cmdrs/<%= @user.id %>"><div class="image" style="background-image: url(<%= @user.image_url %>)"></div></a>
         </div>
         <div class="right">
-          <p class="meta">Trading since <%= @user.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+          <p class="meta"><% if @user.admin? %><span class="tag">Admin</span> &middot; <% end %>Trading since <%= @user.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
           <p class="descriptor"><a href="/cmdrs/<%= @user.id %>">CMDR <%= @user.username %></a></p>
           <p class="subtext"><%= @user.rank %> - <%= @user.tags %></p>
         </div>

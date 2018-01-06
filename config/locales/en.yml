@@ -55,3 +55,8 @@ en:
       code: 10
       title: "Testimonial Required"
       detail: "A testimonial must be provided."
+    admin_session_required:
+      status: 401
+      code: 11
+      title: "Admin Authentication is Required"
+      detail: "Admin Authentication is required for this resource."

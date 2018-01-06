@@ -40,6 +40,11 @@ class Api::V1::BaseController < Api::V1::ModelLookupCallbacksController
     custom_error([:session_required]) unless @session_user
   end
 
+  # Callback to require user is an admin to access resource.
+  def require_admin_session
+    custom_error([:admin_session_required]) unless @session_user.admin?
+  end
+
   # Callback to produce a general resource not found error if the model passed in doesn't exist
   def not_found?(model)
     raise ActionController::RoutingError.new(t(:errors)[:resource_not_found][:detail]) unless model
