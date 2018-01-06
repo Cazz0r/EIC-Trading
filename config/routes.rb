@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :orders
       resources :trade_events
       resources :testimonials
+      resources :users
     end
   end
 
