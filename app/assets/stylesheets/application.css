@@ -19,5 +19,6 @@
  *= require bask/select
  *= require bask/notice-text
  *= require bask/overview-video
+ *= require bask/pagination
  *= require_self
  */

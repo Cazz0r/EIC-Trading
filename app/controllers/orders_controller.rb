@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
         {key: :account_id, operator: :and}],
       params: params
     })
-    @orders = Order.where(query).order('created_at desc').limit(500)
+    @orders = Order.where(query).order('created_at desc').paginate(page: params[:page], per_page: 200)
     respond_to do |format|
       format.html
       if @session_user.admin?
