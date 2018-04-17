@@ -31,7 +31,7 @@
       <%= select("order", "platform", [["PC", ORDER_PLATFORM_PC],["XBOX", ORDER_PLATFORM_XBOX],["PS4", ORDER_PLATFORM_PS4]], {}, class: "styled-select grey rounded", value: ORDER_PLATFORM_PC) %>
     </div>
     <div class="input-group">
-      <label for="order_time_window">Time Window *</label>
+      <label for="order_time_window">Trading Time *</label>
       <%= select("order", "time_window", OrderHelper.time_options, {}, class: "styled-select grey rounded", value: 0) %>
     </div>
     <div class="input-group hidden">
