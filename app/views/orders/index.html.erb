@@ -30,10 +30,10 @@
       <label for="order_platform">Platform *</label>
       <%= select("order", "platform", [["PC", ORDER_PLATFORM_PC],["XBOX", ORDER_PLATFORM_XBOX],["PS4", ORDER_PLATFORM_PS4]], {}, class: "styled-select grey rounded", value: ORDER_PLATFORM_PC) %>
     </div>
-    <!-- <div class="input-group">
+    <div class="input-group">
       <label for="order_time_window">Time Window *</label>
       <%= select("order", "time_window", OrderHelper.time_options, {}, class: "styled-select grey rounded", value: 0) %>
-    </div> -->
+    </div>
     <div class="input-group hidden">
       <label for="order_status">Status *</label>
       <%= select("order", "status", [["Pending", ORDER_OPEN],["Underway", ORDER_UNDERWAY],["Complete", ORDER_CLOSED],["Canceled", ORDER_CANCELED]], {}, class: "styled-select grey rounded", value: ORDER_OPEN) %>
