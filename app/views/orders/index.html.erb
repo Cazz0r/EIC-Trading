@@ -68,7 +68,7 @@
         <div class="main two-wide without-image">
           <div class="right">
             <p class="meta"><span class="tag"><%= order.platform_text %></span> &middot; <span class="tag"><%= order.status_text %></span> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
-            <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; <% if order.user.blank? %> Unassigned<% else %>Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a><% end %></p>
+            <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; <% if order.user.blank? %> Unassigned<% else %>Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a><% if order.time_window %> &middot; Trading Time: <%= OrderHelper.time_options[order.time_window][0] %><% end %><% end %></p>
             <p class="subtext"><%= order.description %></p>
           </div>
         </div>
