@@ -14,7 +14,8 @@ class OrdersController < ApplicationController
         {key: :account_id, operator: :and}],
       params: params
     })
-    @orders = Order.where(query).order('created_at desc').paginate(page: params[:page], per_page: 200)
+    is_csv = params[:format] && params[:format] == "csv"
+    @orders = Order.where(query).order('created_at desc').paginate(page: params[:page], per_page: is_csv ? 10000 : 200)
     respond_to do |format|
       format.html
       if @session_user.admin?
