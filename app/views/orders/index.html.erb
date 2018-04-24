@@ -38,10 +38,16 @@
       <label for="order_status">Status *</label>
       <%= select("order", "status", [["Pending", ORDER_OPEN],["Underway", ORDER_UNDERWAY],["Complete", ORDER_CLOSED],["Canceled", ORDER_CANCELED]], {}, class: "styled-select grey rounded", value: ORDER_OPEN) %>
     </div>
+    <!--
     <div class="input-group">
       <label for="order_details">Details</label>
       <textarea placeholder="Trade/Order details... I.E. 25 Modular terminals." id="order_details"></textarea>
-    </div>
+    </div>-->
+	<div class="input-group">
+		<label for="order_quantity">Quantitiy &amp; Commodity *</label>
+     	<input type="number" name="order[order_quantity]" id="order_quantity" value="" placeholder="Quantity..." size="4" style="float: left; width: 30%;">
+		<%= select("order", "order_commodity", [["Bromellite", "Bromellite"], ["Fujin Tea", "Fujin Tea"], ["Kamitra Cigars", "Kamitra Cigars"], ["Kongga Ale", "Kongga Ale"], ["Lavian Brandy", "Lavian Brandy"], ["Modular Terminals", "Modular Terminals"], ["Painite", "Painite"], ["Soontil Relics", "Soontil Relics"],["Xihe Companions", "Xihe Companions"]], {}, class: "styled-select grey rounded", value: "Bromellite") %>
+	</div>
     <div class="input-group">
       <label for="order_account_id">Account *
       <a class="new-account" onClick="page.toggleElement('a.cancel-new-account');page.toggleElement('select.existing-accounts');page.toggleElement('.new-account-info');page.toggleElement('a.new-account');page.orders.clearNewAccount();">New</a>
@@ -69,7 +75,8 @@
           <div class="right">
             <p class="meta"><span class="tag"><%= order.platform_text %></span> &middot; <span class="tag"><%= order.status_text %></span> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; <% if order.user.blank? %> Unassigned<% if order.time_window %> &middot; Trading Time: <%= OrderHelper.time_options[order.time_window][0] %><% end %><% else %>Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a><% end %></p>
-            <p class="subtext"><%= order.description %></p>
+            <!--<p class="subtext"><%= order.description %></p>-->
+            <p class="subtext"><%= order.order_quantity %> <%= order.order_commodity %></p>
           </div>
         </div>
         <div class="tools hidden">
@@ -79,3 +86,4 @@
   </div>
 </div>
 <script type="text/javascript">page.orders.initOrderFilters();</script>
+
