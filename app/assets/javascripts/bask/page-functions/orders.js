@@ -119,7 +119,10 @@ page.orders = {
       'order[status]': $('#order_status').val(),
       'order[platform]': $('#order_platform').val(),
       'order[time_window]': $('#order_time_window').val(),
-      'order[description]': $('#order_details').val(),
+      //'order[description]': $('#order_details').val(),
+	  'order[description]': $('#order_quantity').val() + " " + $('#order_order_commodity').val(),
+	  'order[order_quantity]': $('#order_quantity').val(),
+	  'order[order_commodity]': $('#order_order_commodity').val(),
       'order[account_id]': blank(page.orders.new_account_id) ? $('#order_account_id').val() : page.orders.new_account_id,
       'order[user_id]': blank($('#order_user_id').val()) ? null : $('#order_user_id').val()
     };
