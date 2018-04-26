@@ -14,7 +14,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
     return custom_error([:account_required]) unless order_params && !order_params[:account_id].blank?
     @order = Order.new(order_params)
     return ar_error(@order) unless @order.save
-    TradeEvent.new({content: order_params[:initial_note], user_id: @session_user.id, order_id: @order.id, account_id: @order.account_id}).save
+    TradeEvent.new({content: :initial_note, user_id: @session_user.id, order_id: @order.id, account_id: @order.account_id}).save
     remder_order(201)
   end
 
@@ -32,7 +32,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
   private
   def order_params
-    params.require(:order).permit(:description, :account_id, :user_id, :time_window, :order_type, :status, :platform, :order_quantity, :order_commodity, :initial_note)
+    params.require(:order).permit(:description, :account_id, :user_id, :time_window, :order_type, :status, :platform, :order_quantity, :order_commodity)
   end
 
   def render_orders(status)
