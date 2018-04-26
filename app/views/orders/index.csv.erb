@@ -1,4 +1,4 @@
 Account,Assigned,Date,Platform,Status,Type,Details
 <% @orders.each do |order| %>
-<%= order.account.name %>,<%= order.user ? order.user.username : 'Unassigned' %>,<%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC,<%= order.platform_text %>,<%= order.status_text %>,<%= order.type_text.downcase %>,<%= order.description %>
+<%= order.account.name %>,<%= order.user ? order.user.username : 'Unassigned' %>,<%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC,<%= order.platform_text %>,<%= order.status_text %>,<%= order.type_text.downcase %>,<%= order.order_quantity %>, <%= order.order_commodity %>
 <% end %>
