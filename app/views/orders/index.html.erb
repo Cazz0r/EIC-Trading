@@ -48,6 +48,11 @@
      	<input type="number" name="order[order_quantity]" id="order_quantity" value="" placeholder="Quantity..." size="4" style="float: left; width: 30%;">
 		<%= select("order", "order_commodity", [["Bromellite", "Bromellite"], ["Fujin Tea", "Fujin Tea"], ["Kamitra Cigars", "Kamitra Cigars"], ["Kongga Ale", "Kongga Ale"], ["Lavian Brandy", "Lavian Brandy"], ["Meta Alloy", "Meta Alloy"], ["Modular Terminals", "Modular Terminals"], ["Painite", "Painite"], ["Soontil Relics", "Soontil Relics"],["Xihe Companions", "Xihe Companions"]], {}, class: "styled-select grey rounded", value: "Bromellite") %>
 	</div>
+   <div class="input-group">
+      <label for="initial_note">Note</label>
+      <input type="text" placeholder="i.e. Security Advised" id="initial_note"  />
+    </div>
+   
     <div class="input-group">
       <label for="order_account_id">Account *
       <a class="new-account" onClick="page.toggleElement('a.cancel-new-account');page.toggleElement('select.existing-accounts');page.toggleElement('.new-account-info');page.toggleElement('a.new-account');page.orders.clearNewAccount();">New</a>
@@ -86,4 +91,5 @@
   </div>
 </div>
 <script type="text/javascript">page.orders.initOrderFilters();</script>
+
 

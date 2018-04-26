@@ -123,6 +123,7 @@ page.orders = {
 	  'order[description]': $('#order_quantity').val() + " " + $('#order_order_commodity').val(),
 	  'order[order_quantity]': $('#order_quantity').val(),
 	  'order[order_commodity]': $('#order_order_commodity').val(),
+	  'order[initial_note]': blank($('#initial_note').val()) ? '' : $('#initial_note').val(),
       'order[account_id]': blank(page.orders.new_account_id) ? $('#order_account_id').val() : page.orders.new_account_id,
       'order[user_id]': blank($('#order_user_id').val()) ? null : $('#order_user_id').val()
     };
@@ -149,3 +150,4 @@ page.orders = {
     window.location = url;
   }
 }
+
