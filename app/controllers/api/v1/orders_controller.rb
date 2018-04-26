@@ -12,6 +12,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
   def create
     return custom_error([:account_required]) unless order_params && !order_params[:account_id].blank?
+    return custom_error([:account_required]) unless order_note && !order_note[:initial_note].blank?
     @order = Order.new(order_params)
     return ar_error(@order) unless @order.save
     TradeEvent.new({content: order_note[:initial_note], user_id: @session_user.id, order_id: @order.id, account_id: @order.account_id}).save
