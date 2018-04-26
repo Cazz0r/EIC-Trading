@@ -44,6 +44,15 @@ page.orders = {
     }
   },
   sendNewOrderToServer: function() {
+	// Perform error checks
+    page.errors.clear();
+    if(blank($('#order_account_id').val())) {
+      return page.errors.set(page.errors.custom("Please select an account for this order."));
+    }
+	if(blank($('#order_quantity').val())) {
+      return page.errors.set(page.errors.custom("Please enter a quantity."));
+    }
+	  
     ShowLoading();
     $.ajax({
       url: '/api/v1/orders',
@@ -64,8 +73,8 @@ page.orders = {
   updateOrder: function() {
     // Perform error checks
     page.errors.clear();
-    if(blank($('#order_account_id').val())) {
-      return page.errors.set(page.errors.custom("Please select an account for this order."));
+    if(blank($('#order_quantity').val())) {
+      return page.errors.set(page.errors.custom("Please enter a quantity."));
     }
 
     // We no longer require a user to be assigned to orders, but this is the check for whenever we turn that on again.
@@ -150,4 +159,5 @@ page.orders = {
     window.location = url;
   }
 }
+
 
