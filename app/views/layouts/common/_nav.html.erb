@@ -1,7 +1,7 @@
 <% if @session_user && !@hide_nav %>
   <div class="nav">
     <a href="/accounts" class="<%= @accounts_on ? 'active' : '' %>">ACCOUNTS
-    </a><a href="/orders" class="<%= @orders_on ? 'active' : '' %>">ORDERS
+    </a><a href="/orders?status=0" class="<%= @orders_on ? 'active' : '' %>">ORDERS
     </a><a href="/cmdrs" class="<%= @cmdrs_on ? 'active' : '' %>">EIC CMDRS
     </a><a href="/cmdrs/<%= @session_user.id %>" class="<%= @cmdr_session_on ? 'active' : '' %>">CMDR <%= @session_user.username.upcase %></a>
   </div>
