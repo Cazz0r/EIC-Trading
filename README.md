@@ -1,5 +1,5 @@
 ## EIC Trading Server & Web
-This is the web application server and web app client for EIC's trading application (and some other stuff).
+This is the web application server and web app client for EIC's trading application (and some other stuff)..
 
 ## Configuring your local environment
 In order to contribute to development of the EIC trading web app, you'll need to set-up your local environment. If you run into issues in this process be sure to check the troubleshooting section of this README. It's likely that your issue has a solution that is covered in this section.
