@@ -46,9 +46,6 @@ page.orders = {
   sendNewOrderToServer: function() {
 	// Perform error checks
     page.errors.clear();
-    if(blank($('#order_account_id').val())) {
-      return page.errors.set(page.errors.custom("Please select an account for this order."));
-    }
 	if(blank($('#order_quantity').val())) {
       return page.errors.set(page.errors.custom("Please enter a quantity."));
     }
