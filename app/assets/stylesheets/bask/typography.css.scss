@@ -40,4 +40,14 @@ html, body {
       display: list-item;
     }
   }
+
+  ol {
+    list-style: number outside none;
+    padding: 8px 0 0 24px;
+    line-height: 18px;
+
+    li {
+      display: list-item;
+    }
+  }
 }
