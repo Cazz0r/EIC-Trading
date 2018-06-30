@@ -20,4 +20,3 @@
 .vagrant
 public/system
 .DS_Store
-*.dump
