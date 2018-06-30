@@ -68,7 +68,8 @@ Never change the timestamp of a migration -- there should never be a need to cha
 ## Building Database From Production .dump
 
     rake db:create
-    pg_restore --verbose --clean --no-acl --no-owner -h localhost -U kite_development -d lib/dbdump/june-30-2018.dump
+    pg_restore --verbose --clean --no-acl --no-owner -h localhost -U eic_development -d ./lib/dbdump/june-30-2018.dump
+    pg_restore --verbose --clean --no-acl --no-owner -h localhost -U eic_dev -d eic_app june-30-2018.dump
       password: eic_development
     rake db:migrate
 
