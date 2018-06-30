@@ -65,14 +65,6 @@ Always use Rails' migration generator to create new migrations.
 
 Never change the timestamp of a migration -- there should never be a need to change it. Make sure to also test your migrations in reverse. Run `rake db:rollback` after running `rake db:migrate` to make sure your migration won't fail if it needs to be rolled back.
 
-## Building Database From Production .dump
-
-    rake db:create
-    pg_restore --verbose --clean --no-acl --no-owner -h localhost -U eic_development -d ./lib/dbdump/june-30-2018.dump
-    pg_restore --verbose --clean --no-acl --no-owner -h localhost -U eic_dev -d eic_app june-30-2018.dump
-      password: eic_development
-    rake db:migrate
-
 ## Working with Rails tests
 As of Rails 4.1 you must maintain your test database/environment manually. Run the following commands to ensure that happens. The migration step must be run each time the database schema updates.
 
