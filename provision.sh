@@ -35,12 +35,12 @@ apt-get install -y \
     git-core \
     vim \
 
-# echo_pretty "Installing Java..."
+echo_pretty "Installing Java..."
 
-# apt-get install -y software-properties-common python-software-properties # Install prerequisites for Oracle version of Java
-# add-apt-repository -y ppa:openjdk-r/ppa # Add Oracle Java repo
-# apt-get update # Update system
-# apt-get install -y openjdk-8-jre-headless # Install JDK version
+apt-get install -y software-properties-common python-software-properties # Install prerequisites for Oracle version of Java
+add-apt-repository -y ppa:openjdk-r/ppa # Add Oracle Java repo
+apt-get update # Update system
+apt-get install -y openjdk-8-jre-headless # Install JDK version
 
 # Install RVM so we can manage rubies.
 #
@@ -90,10 +90,10 @@ if [ ! -d "/home/vagrant/.rvm/rubies/default/" ]; then
     # Install RVM
     su -l -c 'curl -L https://get.rvm.io | bash -s stable' vagrant
 
-    echo_pretty "Installing Ruby 2.4.1..."
+    echo_pretty "Installing Ruby 2.5.0..."
     # Install Ruby
-    su -l -c 'rvm install 2.4.1' vagrant
-    su -l -c 'rvm --default use 2.4.1' vagrant
+    su -l -c 'rvm install 2.5.0 --disable-binary' vagrant
+    su -l -c 'rvm --default use 2.5.0' vagrant
 
     # Output the Ruby version
     #
@@ -172,19 +172,20 @@ grep -q 'cd /vagrant' /home/vagrant/.bash_profile || echo 'cd /vagrant' >> /home
 # if [ ! -f "/usr/share/elasticsearch/bin/elasticsearch" ]; then
 #     echo_pretty "Downloading ElasticSearch..."
 #     pushd /tmp
-#     wget --quiet https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.4.0.deb
-#     echo_pretty "Configuring and installing ElasticSearch 5.4.0..."
-#     dpkg -i elasticsearch-5.4.0.deb
+#     wget --quiet https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.5.deb
+#     echo_pretty "Configuring and installing ElasticSearch 5.6.5..."
+#     dpkg -i elasticsearch-5.6.5.deb
 #     rm -rf elasticsearch*
 #     # Config settings
 #     sudo echo "cluster.name: eic-web-local"      >> /etc/elasticsearch/elasticsearch.yml
 #     sudo echo "node.name: node-local-1"           >> /etc/elasticsearch/elasticsearch.yml
 #     sudo echo "network.bind_host: 0.0.0.0"        >> /etc/elasticsearch/elasticsearch.yml
-#     sudo echo "network.publish_host: 42.42.42.42" >> /etc/elasticsearch/elasticsearch.yml
+#     sudo echo "network.publish_host: 30.30.30.11" >> /etc/elasticsearch/elasticsearch.yml
 #     sudo echo "http.port: 9200"                   >> /etc/elasticsearch/elasticsearch.yml
 #     # Set PID & Java options
 #     sudo echo "PID_DIR=/var/run"                                             >> /etc/default/elasticsearch
-#     sudo echo 'ES_JAVA_OPTS="-Dlog4j2.disable.jmx=true -Xms2048m -Xmx2048m"' >> /etc/default/elasticsearch
+#     # sudo echo 'ES_JAVA_OPTS="-Dlog4j2.disable.jmx=true -Xms2048m -Xmx2048m"' >> /etc/default/elasticsearch
+#     sudo echo 'ES_JAVA_OPTS="-Dlog4j2.disable.jmx=true -Xms4096m -Xmx4096m"' >> /etc/default/elasticsearch
 #     # Automatically start ES instance
 #     sudo update-rc.d elasticsearch defaults 95 10
 #     sudo -i service elasticsearch start
@@ -197,14 +198,14 @@ grep -q 'cd /vagrant' /home/vagrant/.bash_profile || echo 'cd /vagrant' >> /home
 # if [ ! -f "/usr/share/elasticsearch/bin/kibana" ]; then
 #     echo_pretty "Downloading Kibana..."
 #     pushd /tmp
-#     wget --quiet https://artifacts.elastic.co/downloads/kibana/kibana-5.4.0-amd64.deb
-#     echo_pretty "Configuring and installing Kibana 5.4.0..."
-#     dpkg -i kibana-5.4.0-amd64.deb
+#     wget --quiet https://artifacts.elastic.co/downloads/kibana/kibana-5.6.5-amd64.deb
+#     echo_pretty "Configuring and installing Kibana 5.6.5..."
+#     dpkg -i kibana-5.6.5-amd64.deb
 #     rm -rf kibana*
 #     # Config settings
 #     sudo echo 'server.name: "kibana-eic-web-local"'      >> /etc/kibana/kibana.yml
 #     sudo echo 'elasticsearch.url: "http://0.0.0.0:9200/"' >> /etc/kibana/kibana.yml
-#     sudo echo 'server.host: "42.42.42.42"'                >> /etc/kibana/kibana.yml
+#     sudo echo 'server.host: "30.30.30.11"'                >> /etc/kibana/kibana.yml
 #     sudo echo 'kibana.index: ".kibana"'                   >> /etc/kibana/kibana.yml
 #     # Automatically start Kibana instance
 #     sudo update-rc.d kibana defaults 95 10
@@ -215,17 +216,17 @@ grep -q 'cd /vagrant' /home/vagrant/.bash_profile || echo 'cd /vagrant' >> /home
 ##############################################################################################################################
 ##############################################################################################################################
 
-echo_pretty "Installing ImageMagick..."
-if [ ! -f "/usr/bin/convert" ]; then
-    echo_pretty "Configuring and installing ImageMagick..."
-    apt-get install -y imagemagick
-else
-    echo_pretty "Looks like ImageMagick exists. Assuming ImageMagick installation..."
-fi
+# echo_pretty "Installing ImageMagick..."
+# if [ ! -f "/usr/bin/convert" ]; then
+#     echo_pretty "Configuring and installing ImageMagick..."
+#     apt-get install -y imagemagick
+# else
+#     echo_pretty "Looks like ImageMagick exists. Assuming ImageMagick installation..."
+# fi
 
 # Install RMagick dependency
-echo_pretty "Installing RMagick dependency..."
-apt-get install -y libmagickwand-dev
+# echo_pretty "Installing RMagick dependency..."
+# apt-get install -y libmagickwand-dev
 
 # echo_pretty "Installing Redis..."
 # if [ ! -f "/usr/local/bin/redis-server" ]; then
@@ -255,11 +256,5 @@ apt-get install -y libmagickwand-dev
 # else
 #     echo_pretty "Looks like Redis exists. Assuming Redis installation..."
 # fi
-
-# Install MySQL
-# echo_pretty "Installing MySQL..."
-# apt-get install -y mysql-server-5.5
-# echo_pretty "Installing MySQL Install DB..."
-# mysql_install_db
 
 echo_pretty "Provisioning complete!"

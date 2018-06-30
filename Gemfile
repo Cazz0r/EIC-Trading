@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.5.0'
 
-gem 'bundler', '= 1.15.3'
+gem 'bundler', '= 1.16.2'
 gem 'pg', '= 0.21.0'
-gem 'rails', '= 5.1.3'
+gem 'rails', '= 5.1.5'
 gem 'rails_12factor', '= 0.0.3'
 gem 'activerecord-session_store', '= 1.1.0'
 gem 'will_paginate', '= 3.1.6'
