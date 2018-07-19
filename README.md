@@ -17,18 +17,33 @@ Now that you have the codebase, vagrant and virtualbox on your machine, it's tim
 
     vagrant up
 
+If you get an NFS error on this step then run:
+
+    sudo apt-get install nfs-common
+
 ### Step 4 - Connecting to your virtual machine
 Once your VM is up and running you will need to connect to it. To do this we do the following:
 
     vagrant ssh
 
-### Step 5 - Configuring your ruby environment
+### Step 5 - Install Ruby
+Now that the VM is up, ssh into the VM and install ruby.
+
+    git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    exec bash
+    git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+    rbenv install 2.5.0
+    rbenv global 2.5.0
+
+### Step 6 - Configuring your ruby environment
 Once you `ssh` into your VM after setting up your environment variables, we need to install all ruby libraries. To do this run the bundle command below:
 
     sudo gem install bundler -v 1.16.2
     bundle install
 
-### Step 6 - Setting up your database
+### Step 7 - Setting up your database
 Once your ruby environment is initialized you will need to configure your local postgresql database. To do this copy and paste the following set of commands into your console. Ensure you `ssh` before running this.
 
     sudo su postgres
@@ -37,13 +52,13 @@ Once your ruby environment is initialized you will need to configure your local 
     sudo -u postgres createuser -s eic_development
     sudo -u postgres psql -c "ALTER USER eic_development WITH PASSWORD 'eic_development'"
 
-### Step 7 - Provisioning your database
+### Step 8 - Provisioning your database
 Now that your database configuration has been set you should provision your database with our application's schema.
 
     rake db:create
     rake db:migrate
 
-### Step 8 - Launching the web server
+### Step 9 - Launching the web server
 At this point all resources have been installed and initialized and you are ready to start your rails server. To do this use the following command:
 
     bundle exec puma -C config/puma.rb

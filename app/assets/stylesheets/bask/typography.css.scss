@@ -48,6 +48,11 @@ html, body {
 
     li {
       display: list-item;
+
+      ul {
+        padding: 0 0 0 24px;
+        li { }
+      }
     }
   }
 }

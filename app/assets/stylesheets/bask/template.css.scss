@@ -26,6 +26,11 @@ body {
       p {
         &.text {
           line-height: 24px;
+
+          &.underline {
+            text-decoration: underline;
+            text-decoration-style: solid;
+          }
         }
       }
     }

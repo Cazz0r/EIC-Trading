@@ -2,11 +2,11 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "precise64"
+  config.vm.box = "hashicorp/precise64"
 
   # The URL to a precise64 box, if it doesn't already exist on the system,
   # it will be downloaded.
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.ssh.forward_agent = true
 
   config.vm.define :eicweb do |web|

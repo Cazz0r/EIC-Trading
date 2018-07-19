@@ -52,58 +52,58 @@ apt-get install -y openjdk-8-jre-headless # Install JDK version
 echo_pretty "Installing RVM..."
 
 # Check to see if we have RVM and correct Ruby already
-if [ ! -d "/home/vagrant/.rvm/rubies/default/" ]; then
-    echo_pretty "Installing RVM requirements..."
-    # These requirements are necessary to install RVM.
-    apt-get install -y \
-        libreadline6-dev \
-        libsqlite3-dev \
-        sqlite3 \
-        libxml2-dev \
-        libxslt1-dev \
-        autoconf \
-        libgdbm-dev \
-        libncurses5-dev \
-        automake \
-        libtool \
-        bison \
-        libffi-dev \
-        libyaml-dev \
-        gawk
+# if [ ! -d "/home/vagrant/.rvm/rubies/default/" ]; then
+#     echo_pretty "Installing RVM requirements..."
+#     # These requirements are necessary to install RVM.
+#     apt-get install -y \
+#         libreadline6-dev \
+#         libsqlite3-dev \
+#         sqlite3 \
+#         libxml2-dev \
+#         libxslt1-dev \
+#         autoconf \
+#         libgdbm-dev \
+#         libncurses5-dev \
+#         automake \
+#         libtool \
+#         bison \
+#         libffi-dev \
+#         libyaml-dev \
+#         gawk
 
-    if grep -q rvm /etc/group; then
-       echo_pretty "RVM group already exists."
-    else
-       echo_pretty "Creating the RVM group..."
-       groupadd rvm
-    fi
+#     if grep -q rvm /etc/group; then
+#        echo_pretty "RVM group already exists."
+#     else
+#        echo_pretty "Creating the RVM group..."
+#        groupadd rvm
+#     fi
 
-    echo_pretty "Adding the vagrant user to RVM group..."
-    # Add the vagrant user to the RVM group
-    usermod -a -G rvm vagrant
+#     echo_pretty "Adding the vagrant user to RVM group..."
+#     # Add the vagrant user to the RVM group
+#     usermod -a -G rvm vagrant
 
-    echo_pretty "Set up GPG requirements..."
-    # Install RVM
-    su -l -c 'gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys D39DC0E3' vagrant
+#     echo_pretty "Set up GPG requirements..."
+#     # Install RVM
+#     su -l -c 'gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys D39DC0E3' vagrant
 
-    echo_pretty "Downloading and installing RVM..."
-    # Install RVM
-    su -l -c 'curl -L https://get.rvm.io | bash -s stable' vagrant
+#     echo_pretty "Downloading and installing RVM..."
+#     # Install RVM
+#     su -l -c 'curl -L https://get.rvm.io | bash -s stable' vagrant
 
-    echo_pretty "Installing Ruby 2.5.0..."
-    # Install Ruby
-    su -l -c 'rvm install 2.5.0 --disable-binary' vagrant
-    su -l -c 'rvm --default use 2.5.0' vagrant
+#     echo_pretty "Installing Ruby 2.5.0..."
+#     # Install Ruby
+#     su -l -c 'rvm install 2.5.0 --disable-binary' vagrant
+#     su -l -c 'rvm --default use 2.5.0' vagrant
 
-    # Output the Ruby version
-    #
-    #   We do this to let a developer know what version of ruby is
-    #   being automatically installed and provisioned on the VM.
-    #
-    echo_pretty "Ruby version: `su -l -c 'ruby --version' vagrant`"
-else
-    echo_pretty "Looks like RVM exists. Assuming RVM installation with ruby version: `su -l -c 'ruby --version' vagrant`..."
-fi
+#     # Output the Ruby version
+#     #
+#     #   We do this to let a developer know what version of ruby is
+#     #   being automatically installed and provisioned on the VM.
+#     #
+#     echo_pretty "Ruby version: `su -l -c 'ruby --version' vagrant`"
+# else
+#     echo_pretty "Looks like RVM exists. Assuming RVM installation with ruby version: `su -l -c 'ruby --version' vagrant`..."
+# fi
 
 # Install foreman to start / stop various web and backend services.
 #su -l -c \

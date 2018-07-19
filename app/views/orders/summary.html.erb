@@ -36,25 +36,27 @@
   <% else %>
     <div class="element notice-text">
       <h3><strong>Thank you <%= @order.account.account_type_string %> <%= @order.account.name %> for your order.</strong></h3>
-      <p class="text">WHAT HAPPENS NOW ...</p>
+      <p class="text"><strong>WHAT HAPPENS NOW ...</strong></p>
       <p class="text">We will source your goods or minerals within the next 24-48 hours</p>
       <p class="text">You stay on our Discord, if you leave your order will be cancelled</p>
-      <p class="text">You monitor #trading-floor for your name to be called</p>
-      <p class="text">When told your order is ready by a Trader:</p>
+      <p class="text">Monitor #trading-floor for your name to be called/mentioned with @name</p>
+      <p class="text underline">When told your order is ready by a Trader:</p>
       <ol>
-        <li>Get the right amount of Palladium (HR 784 Jahn Station or Schrodinger is close to us)</li>
-        <li>Get 2 Collector Controllers (the minimum is 2 Class 3 for 4 active limpets)</li>
-        <li>Get 10-15 limpets.</li>
-        <li>Come to LTT 1349 and let the CMDR know you are ready via Discord Private Message </li>
+        <li>Get the right payment - if you're not sure of the total check <a href="https://eicgaming.com/trading-post" target="_blank">https://eicgaming.com/trading-post</a>
+          <ul>
+            <li>Imperial Slaves are available from many stations close to LTT 1349 see <a href="https://eddb.io/commodity/59" target="_blank">https://eddb.io/commodity/59</a></li>
+          </ul>
+        </li>
+        <li>Get 2 Collector Controllers, they stack and the minimum is 2 Class 3’s for 4 active limpets, more is faster</li>
+        <li>Get 10-15 limpets</li>
+        <li>Come to LTT 1349 and let the CMDR know you are ready via Discord Private Message</li>
+        <li>We will send Friend and Wing requests and may give you a new trade location</li>
       </ol>
-      <p class="text">We will send Friend and Wing requests and may give you a new trade location</p>
       <p class="text">We only operate in Open</p>
       <p class="text"><strong>PLEASE NOTE:</strong></p>
-      <ul>
-        <li>If we ping you 3 times over 48 hours and don't get a reply your order will be cancelled.</li>
-        <li>If you arrive at the trade location without payment or means of collection we will move you to the end of the waiting list.</li>
-        <li>You may come to a trade armed in case of NPC pirates (they seem to know when people have Palladium) but you may not bring another player to the trade location. If our CMDR is not happy with how things are going then they reserve the right to high wake and re-arrange the trade at another time and place.</li>
-      </ul>
+      <p class="text">If we ping you 3 times over 48 hours and don't get a reply your order will be canceled.</p>
+      <p class="text">If you arrive at the trade location without payment or means of collection we will move you to the end of the waiting list.</p>
+      <p class="text">You may come to a trade armed in case of NPC pirates but you may not bring another player to the trade location. If our CMDR is not happy with how things are going then they reserve the right to high wake and re-arrange the trade at another time and place.</p>
     </div>
   <% end %>
 
