@@ -15,7 +15,14 @@ class OrdersController < ApplicationController
       params: params
     })
     is_csv = params[:format] && params[:format] == "csv"
-    @orders = Order.where(query).order('created_at desc').paginate(page: params[:page], per_page: is_csv ? 10000 : 200)
+
+    # Tailor query to use case
+    if is_csv
+      @orders = Order.where(query).order('created_at desc').paginate(page: params[:page], per_page: 10000)
+    else
+      @orders = Order.where(query).includes(:ordered_trade_events).order('created_at desc').paginate(page: params[:page], per_page: 200)
+    end
+
     respond_to do |format|
       format.html
       if @session_user.admin?

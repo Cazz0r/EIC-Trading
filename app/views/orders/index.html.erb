@@ -20,7 +20,7 @@
   <div class="element">
     <h3>Orders &middot; <a onClick="page.toggleElement('div.create-order');">New Order</a><% if @session_user.admin? %> &middot; <a onClick="page.orders.openCsvLink();" download>Download CSV</a> <% end %></h3>
   </div>
-  
+
   <div class="element create-order form bound hidden">
     <div class="input-group">
       <label for="order_type">Type *</label>
@@ -52,7 +52,7 @@
       <label for="initial_note">Note</label>
       <input type="text" placeholder="i.e. Security Advised" id="initial_note"  />
     </div>
-   
+
     <div class="input-group">
       <label for="order_account_id">Account *
       <a class="new-account" onClick="page.toggleElement('a.cancel-new-account');page.toggleElement('select.existing-accounts');page.toggleElement('.new-account-info');page.toggleElement('a.new-account');page.orders.clearNewAccount();">New</a>
@@ -81,7 +81,11 @@
             <p class="meta"><span class="tag"><%= order.platform_text %></span> &middot; <span class="tag"><%= order.status_text %></span> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; <% if order.user.blank? %> Unassigned<% if order.time_window %> &middot; Trading Time: <%= OrderHelper.time_options[order.time_window][0] %><% end %><% else %>Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a><% end %></p>
             <!--<p class="subtext"><%= order.description %></p>-->
-            <p class="subtext"><%= order.order_quantity %> <%= order.order_commodity %></p>
+            <p class="subtext"><strong>Commodity:</strong> <%= order.order_quantity %> <%= order.order_commodity %></p>
+            <p class="subtext"><strong>Discord:</strong> <%= order.account.discord_name %></p>
+            <% unless order.ordered_trade_events.blank? %>
+              <p class="subtext"><strong>Recent Note:</strong> "<%= order.ordered_trade_events.first.content %>"</p>
+            <% end %>
           </div>
         </div>
         <div class="tools hidden">
