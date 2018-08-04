@@ -16,7 +16,5 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-*.env
-.vagrant
 public/system
 .DS_Store
