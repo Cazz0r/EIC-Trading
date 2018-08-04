@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: .
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - 4242:4242
+    volumes:
+      - .:/app
+    tty: true
+    stdin_open: true
+  postgres:
+    image: postgres:9.4.17-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=eic_development
+      - POSTGRES_PASSWORD=eic_development
+      - POSTGRES_DB=eic_app
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres: {}
