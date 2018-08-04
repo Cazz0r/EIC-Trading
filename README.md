@@ -8,9 +8,12 @@ In order to contribute to development of the EIC trading web app, you'll need to
 Install the latest version of [Docker CE](https://store.docker.com/search?type=edition&offering=community) on your local machine and [create an account](https://hub.docker.com/) if you don't already have one. If you're running on Linux, use the command line installation instructions.
 
 ### Step 2 - Clone Project
-From your terminal, `cd` into a folder where you want the Blueshift project to live and clone the repo.
+From your terminal, `cd` into a folder where you want the Blueshift project to live and init the repo.
 ```
-$ git clone https://github.com/Cazz0r/EIC-Trading.git
+$ git init
+$ git remote add origin https://github.com/Cazz0r/EIC-Trading.git
+$ git fetch
+$ git checkout master
 ```
 
 ### Step 4 - Add the Project Aliases
