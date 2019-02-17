@@ -37,4 +37,13 @@ class Api::V1::OrdersControllerTest < ActionController::TestCase
       check_order_response(ActiveSupport::JSON.decode(response.body))
     end
   end
+
+  test "can create an order using api_key and user_id and account id" do
+    @order_params["account_id"] = @account.id
+    assert_difference(['Order.count'], 1) do
+      post :create, params: { api_key: 'test_token', user_id: @user.id, order: @order_params, event: @event_params}
+      assert_response 201
+      check_order_response(ActiveSupport::JSON.decode(response.body))
+    end
+  end
 end
