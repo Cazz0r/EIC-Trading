@@ -2,7 +2,7 @@
 class Order < ActiveRecord::Base
   strip_attributes
   # attributes :id, :description, :account_id, :user_id, :order_type, :status, :order_hash, :time_window,
-  # :order_quantity, :order_commodity, :created_at, :updated_at
+  # :order_quantity, :order_commodity, :platform, :created_at, :updated_at
   # order_type: 0 - order, 1 - contribution
   # status: 0 - open, 1 - underway, 2 - closed, 3 - canceled
   # platform: 0 - PC, 1 - XBOX, 2 - PS4

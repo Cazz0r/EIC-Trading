@@ -30,11 +30,6 @@ class Api::V1::BaseController < Api::V1::ModelLookupCallbacksController
     @sort.delete_if { |k, v| v.empty? || v == 'NaN' || v.blank? } if @sort
   end
 
-  # Callback to load the session user if one exists.
-  def load_session_user
-    @session_user = current_user
-  end
-
   # Callback to require a session to access resource.
   def require_session
     custom_error([:session_required]) unless @session_user
