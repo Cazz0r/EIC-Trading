@@ -19,4 +19,4 @@ Orders have certain attributes which map ids to other data. Those mappings are a
 - **METHOD:** `POST`
 - **ROUTE:** `/orders`
 - **PARAMS:** (Using Account Name) `{"api_key"=>[REDACTED], "user_id"=>"21", "event"=>{"initial_note"=>"This is an initial note."}, "order"=>{"account_name"=>"ACNT-790", "description"=>"123 Bromellite", "order_commodity"=>"Bromellite", "order_quantity"=>"123", "order_type"=>"0", "platform"=>"1", "status"=>"0", "time_window"=>"3", "user_id"=>""}}`
-- **PARAMS:** (Using Account ID) `{"api_key"=>"test_token", "event"=>{"initial_note"=>"This is an initial note."}, "order"=>{"account_id"=>"23", "description"=>"123 Bromellite", "order_commodity"=>"Bromellite", "order_quantity"=>"123", "order_type"=>"0", "platform"=>"1", "status"=>"0", "time_window"=>"3", "user_id"=>""}, "user_id"=>"23"}`
+- **PARAMS:** (Using Account ID) `{"api_key"=>[REDACTED], "event"=>{"initial_note"=>"This is an initial note."}, "order"=>{"account_id"=>"23", "description"=>"123 Bromellite", "order_commodity"=>"Bromellite", "order_quantity"=>"123", "order_type"=>"0", "platform"=>"1", "status"=>"0", "time_window"=>"3", "user_id"=>""}, "user_id"=>"23"}`
