@@ -2,8 +2,7 @@ class Api::V1::AccountsController < Api::V1::BaseController
   before_action :load_account, only: [:show, :update, :destroy]
 
   def index
-    return custom_error([:lookup_params_required]) unless @filter && @filter[:account_id]
-    @account = Account.all.order("name asc")
+    @accounts = Account.all.order("name asc")
     render_accounts(200)
   end
 
@@ -40,7 +39,7 @@ class Api::V1::AccountsController < Api::V1::BaseController
   end
 
   def render_accounts(status)
-    outputs = [{ model: @trade_events, key: :trade_events, serializer: API::V1::AccountSerializer }]
+    outputs = [{ model: @accounts, key: :accounts, serializer: API::V1::AccountSerializer }]
     render_json(status, outputs)
   end
 
