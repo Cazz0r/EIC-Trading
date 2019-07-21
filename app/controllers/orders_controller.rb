@@ -18,9 +18,9 @@ class OrdersController < ApplicationController
 
     # Tailor query to use case
     if is_csv
-      @orders = Order.where(query).order('created_at desc').paginate(page: params[:page], per_page: 10000)
+      @orders = Order.includes(:user, :account).where(query).order('created_at desc').paginate(page: params[:page], per_page: 10000)
     else
-      @orders = Order.where(query).includes(:ordered_trade_events).order('created_at desc').paginate(page: params[:page], per_page: 200)
+      @orders = Order.includes(:user, :account).where(query).includes(:ordered_trade_events).order('created_at desc').paginate(page: params[:page], per_page: 200)
     end
 
     respond_to do |format|
