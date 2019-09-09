@@ -2,7 +2,18 @@ body div.bask-wrapper div.element.form div.input-group {
   /* -------------------- Select Box Styles: bavotasan.com Method (with special adaptations by ericrasch.com) */
   /* -------------------- Source: http://bavotasan.com/2011/style-select-box-using-only-css/ */
   .styled-select {
-    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    background-image:
+      linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%);
+    background-position:
+      calc(100% - 20px) calc(1em - 1px),
+      calc(100% - 15px) calc(1em - 1px),
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
     height: 29px;
     overflow: hidden;
     width: 240px;
@@ -22,7 +33,6 @@ body div.bask-wrapper div.element.form div.input-group {
     width: 268px;
   }
   .styled-select.slate {
-    background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
     height: 34px;
     width: 240px;
   }
@@ -109,7 +119,6 @@ body div.bask-wrapper div.element.form div.input-group {
     -webkit-border-radius: 9px 9px 9px 9px;
     border-radius: 9px 9px 9px 9px;
     box-shadow: 1px 1px 11px #330033;
-    background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
   }
   /* -------------------- Select Box Styles: stackoverflow.com Method */
   /* -------------------- Source: http://stackoverflow.com/a/5809186 */
@@ -121,7 +130,6 @@ body div.bask-wrapper div.element.form div.input-group {
     -webkit-padding-end: 20px;
     -webkit-padding-start: 2px;
     -webkit-user-select: none;
-    background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
     background-position: 97% center;
     background-repeat: no-repeat;
     border: 1px solid #AAA;
@@ -136,7 +144,6 @@ body div.bask-wrapper div.element.form div.input-group {
   }
   select#soflow-color {
     color: #fff;
-    background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);
     background-color: #779126;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
