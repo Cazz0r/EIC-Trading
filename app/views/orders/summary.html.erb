@@ -5,6 +5,7 @@
     <p class="text"><strong>Commodity: </strong><%= @order.order_quantity %> <%= @order.order_commodity %></p>
     <p class="text"><strong>Status: </strong><%= @order.status_text %></p>
     <p class="text"><strong>Trading Time: </strong><%= OrderHelper.time_options[@order.time_window][0] %></p>
+    <p class="text"><strong>Location: </strong><%= @order.location_text %></p>
     <p class="text"><strong>Platform: </strong><%= @order.platform_text %></p>
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
     <p class="text"><strong>EIC CMDR: </strong><% if @order.user.blank? %>Unassigned<% else %><%= @order.user.username %><% end %></p>
@@ -38,7 +39,7 @@
       <h3><strong>Thank you <%= @order.account.account_type_string %> <%= @order.account.name %> for your order.</strong></h3>
       <p class="text"><strong>WHAT HAPPENS NOW ...</strong></p>
       <p class="text">We will source your goods or minerals within the next 24-48 hours</p>
-      <p class="text">You stay on our Discord, if you leave your order will be cancelled</p>
+      <p class="text">You stay on our Discord <strong>and do not go Red Dot / Ignore!</strong> If you leave your order will be cancelled</p>
       <p class="text">Monitor #trading-floor for your name to be called/mentioned with @name</p>
       <p class="text underline">When told your order is ready by a Trader:</p>
       <ol>

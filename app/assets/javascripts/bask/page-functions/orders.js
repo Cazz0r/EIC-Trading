@@ -1,16 +1,16 @@
 page.orders = {
   new_account_id: null,
-  init: function() {
+  init: function () {
     // console.log('You are signed in!');
   },
-  clearNewAccount: function() {
+  clearNewAccount: function () {
     $('#account_name').val(null);
     page.orders.new_account_id = null;
   },
-  createOrder: function() {
+  createOrder: function () {
     // Perform error checks
     page.errors.clear();
-    if(!page.orders.hasNewAccountOnOrder() && blank($('#order_account_id').val())) {
+    if (!page.orders.hasNewAccountOnOrder() && blank($('#order_account_id').val())) {
       return page.errors.set(page.errors.custom("Please select an account for this order."));
     }
 
@@ -21,35 +21,35 @@ page.orders = {
 
     // Once error states pass, send the order to the server and create new account if a name exists
     ShowLoading();
-    if(page.orders.hasNewAccountOnOrder()) {
+    if (page.orders.hasNewAccountOnOrder()) {
       $.ajax({
         url: '/api/v1/accounts',
         type: 'POST',
         data: page.accounts.getAccountFromForm(),
         traditional: true,
         dataType: 'json',
-        success: function(response) {
+        success: function (response) {
           page.orders.new_account_id = response.account.id;
           page.orders.sendNewOrderToServer();
         },
-        error: function(response) {
+        error: function (response) {
           HideLoading();
           page.errors.set(response.responseJSON);
         }
       });
 
-    // If we don't have a new account on the order then just send the order as-is.
+      // If we don't have a new account on the order then just send the order as-is.
     } else {
       page.orders.sendNewOrderToServer();
     }
   },
-  sendNewOrderToServer: function() {
-	// Perform error checks
+  sendNewOrderToServer: function () {
+    // Perform error checks
     page.errors.clear();
-	if(blank($('#order_quantity').val())) {
+    if (blank($('#order_quantity').val())) {
       return page.errors.set(page.errors.custom("Please enter a quantity."));
     }
-	  
+
     ShowLoading();
     $.ajax({
       url: '/api/v1/orders',
@@ -57,20 +57,20 @@ page.orders = {
       data: page.orders.getOrderFromForm(),
       traditional: true,
       dataType: 'json',
-      success: function(response) {
+      success: function (response) {
         HideLoading();
-        setTimeout(function(){ window.location = '/orders/' + response.order.id; }, 200);
+        setTimeout(function () { window.location = '/orders/' + response.order.id; }, 200);
       },
-      error: function(response) {
+      error: function (response) {
         HideLoading();
         page.errors.set(response.responseJSON);
       }
     });
   },
-  updateOrder: function() {
+  updateOrder: function () {
     // Perform error checks
     page.errors.clear();
-    if(blank($('#order_quantity').val())) {
+    if (blank($('#order_quantity').val())) {
       return page.errors.set(page.errors.custom("Please enter a quantity."));
     }
 
@@ -87,17 +87,17 @@ page.orders = {
       data: page.orders.getOrderFromForm(),
       traditional: true,
       dataType: 'json',
-      success: function(response) {
+      success: function (response) {
         HideLoading();
-        setTimeout(function(){ location.reload(); }, 200);
+        setTimeout(function () { location.reload(); }, 200);
       },
-      error: function(response) {
+      error: function (response) {
         HideLoading();
         page.errors.set(response.responseJSON);
       }
     });
   },
-  deleteOrder: function() {
+  deleteOrder: function () {
     page.errors.clear();
     ShowLoading();
     $.ajax({
@@ -106,35 +106,36 @@ page.orders = {
       data: {},
       traditional: true,
       dataType: 'json',
-      success: function(response) {
+      success: function (response) {
         HideLoading();
-        setTimeout(function(){ window.location = '/orders'; }, 200);
+        setTimeout(function () { window.location = '/orders'; }, 200);
       },
-      error: function(response) {
+      error: function (response) {
         HideLoading();
         page.errors.set(response.responseJSON);
       }
     });
   },
-  hasNewAccountOnOrder: function() {
+  hasNewAccountOnOrder: function () {
     return !blank($('#account_name').val());
   },
-  getOrderFromForm: function() {
+  getOrderFromForm: function () {
     return {
       'order[order_type]': $('#order_order_type').val(),
       'order[status]': $('#order_status').val(),
       'order[platform]': $('#order_platform').val(),
+      'order[location]': $('#order_location').val(),
       'order[time_window]': $('#order_time_window').val(),
       //'order[description]': $('#order_details').val(),
-	  'order[description]': $('#order_quantity').val() + " " + $('#order_order_commodity').val(),
-	  'order[order_quantity]': $('#order_quantity').val(),
-	  'order[order_commodity]': $('#order_order_commodity').val(),
-	  'event[initial_note]': blank($('#initial_note').val()) ? 'Order Opened.' : 'Order Opened. ' + $('#initial_note').val(),
+      'order[description]': $('#order_quantity').val() + " " + $('#order_order_commodity').val(),
+      'order[order_quantity]': $('#order_quantity').val(),
+      'order[order_commodity]': $('#order_order_commodity').val(),
+      'event[initial_note]': blank($('#initial_note').val()) ? 'Order Opened.' : 'Order Opened. ' + $('#initial_note').val(),
       'order[account_id]': blank(page.orders.new_account_id) ? $('#order_account_id').val() : page.orders.new_account_id,
       'order[user_id]': blank($('#order_user_id').val()) ? null : $('#order_user_id').val()
     };
   },
-  getOrderFilterLink: function() {
+  getOrderFilterLink: function () {
     var order_type = $("select#filter_order_type").val();
     var platform = $("select#filter_platform").val();
     var status = $("select#filter_status").val();
@@ -142,16 +143,16 @@ page.orders = {
     var newUrl = $.query.set("order_type", order_type).set("platform", platform).set("status", status).set("account_id", account_id).toString();
     return newUrl;
   },
-  filterOrders: function() {
+  filterOrders: function () {
     window.location = page.orders.getOrderFilterLink();
   },
-  initOrderFilters: function() {
+  initOrderFilters: function () {
     $("select#filter_order_type").change(page.orders.filterOrders);
     $("select#filter_platform").change(page.orders.filterOrders);
     $("select#filter_status").change(page.orders.filterOrders);
     $("select#filter_account_id").change(page.orders.filterOrders);
   },
-  openCsvLink: function() {
+  openCsvLink: function () {
     var url = 'orders.csv' + page.orders.getOrderFilterLink();
     window.location = url;
   }
