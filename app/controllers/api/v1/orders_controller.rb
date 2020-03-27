@@ -43,7 +43,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
   private
   def order_params
-    params.require(:order).permit(:description, :account_id, :user_id, :time_window, :order_type, :status, :platform, :order_quantity, :order_commodity)
+    params.require(:order).permit(:description, :account_id, :user_id, :time_window, :location, :order_type, :status, :platform, :order_quantity, :order_commodity)
   end
 
   def order_note

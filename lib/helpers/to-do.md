@@ -1,0 +1,2 @@
+- Add 2 new Commodities: Osmium, Occupied Escape Pods
+  - Make commodities alphabetical order

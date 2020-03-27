@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   # status: 0 - open, 1 - underway, 2 - closed, 3 - canceled
   # platform: 0 - PC, 1 - XBOX, 2 - PS4
   # time_window: 0 = UTC 0000 - 0400, 1 = UTC 0400 - 0800, 2 = UTC 0800 - 1200, 3 = UTC 1200 - 1600, 4 = UTC 1600 - 2000, 5 = UTC 2000 - 0000
+  # location: 0 - Bubble, 1 - Colonia
   has_many :trade_events, dependent: :destroy
   has_many :ordered_trade_events, -> { order 'created_at desc' }, class_name: "TradeEvent"
   has_many :testimonials, dependent: :destroy
@@ -30,6 +31,10 @@ class Order < ActiveRecord::Base
 
   def platform_text
     OrderHelper.platform_text(self.platform)
+  end
+
+  def location_text
+    OrderHelper.location_text(self.location)
   end
 
   def is_open

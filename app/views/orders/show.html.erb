@@ -3,6 +3,7 @@
     <h3><%= @order.account.name %> <%= @order.type_text%> &middot; <a onClick="page.toggleElement('div.edit-order');">Edit</a> &middot; <a onClick="page.toggleElement('div.delete-order');">Delete</a> &middot; <a onClick="page.toggleElement('div.add-trade-event');">Add Note</a> &middot; <a onClick="page.toggleElement('div.deposit-withdraw');">Deposit/Withdraw</a> &middot; <a href="/t/<%= @order.order_hash %>" target="_blank">Summary</a></h3>
     <p class="text"><strong>Account: </strong><a href="/accounts/<%= @order.account.id %>"><%= @order.account.name %></a></p>
     <p class="text"><strong>Trading Time: </strong><%= OrderHelper.time_options[@order.time_window][0] %></p>
+    <p class="text"><strong>Location: </strong><%= @order.location_text %></p>
     <p class="text"><strong>Discord Handle: </strong><%= @order.account.discord_name %></p>
    <!--<p class="text"><strong>Detail: </strong><%= @order.description %></p>-->
     <p class="text"><strong>Commodity: </strong><%= @order.order_quantity %> <%= @order.order_commodity %></p>
@@ -11,7 +12,7 @@
     <p class="text"><strong>Opened: </strong><%= @order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
     <p class="text"><strong>EIC CMDR: </strong><% if @order.user.blank? %>Unassigned<% else %><a href="/cmdrs/<%= @order.user.id %>"><%= @order.user.username %></a><% end %></p>
   </div>
-  
+
   <div class="element edit-order form bound hidden">
     <div class="input-group">
       <label for="order_order_type">Type *</label>
@@ -19,11 +20,15 @@
     </div>
     <div class="input-group">
       <label for="order_platform">Platform *</label>
-      <%= select("order", "platform", [["PC", ORDER_PLATFORM_PC],["XBOX", ORDER_PLATFORM_XBOX],["PS4", ORDER_PLATFORM_PS4]], {}, class: "styled-select grey rounded", value: ORDER_PLATFORM_PC) %>
+      <%= select("order", "platform", [["PC", ORDER_PLATFORM_PC],["XBOX", ORDER_PLATFORM_XBOX],["PS4", ORDER_PLATFORM_PS4]], {}, class: "styled-select grey rounded", value: @order.platform) %>
     </div>
     <div class="input-group">
       <label for="order_time_window">Trading Time *</label>
       <%= select("order", "time_window", OrderHelper.time_options, {}, class: "styled-select grey rounded", value: 0) %>
+    </div>
+    <div class="input-group">
+      <label for="order_location">Location *</label>
+      <%= select("order", "location", [["Bubble", ORDER_LOCATION_BUBBLE],["Colonia", ORDER_LOCATION_COLONIA]], {}, class: "styled-select grey rounded", value: @order.location) %>
     </div>
     <div class="input-group">
       <label for="order_status">Status *</label>
@@ -119,7 +124,7 @@
 
                 <span class="really-delete-<%= trade_event.id %> hidden"> Really? <a onclick="page.tradeEvents.deleteTradeEvent(<%= trade_event.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');">No</a></span>
                 <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');" class="start-delete-<%= trade_event.id %>">Delete</a> &middot;
-                
+
                 <a href="/cmdrs/<%= trade_event.user.id %>"><%= trade_event.user.username %></a> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
               <p class="quote">"<%= trade_event.content %>"</p>
             </div>

@@ -34,6 +34,10 @@
       <label for="order_time_window">Trading Time *</label>
       <%= select("order", "time_window", OrderHelper.time_options, {}, class: "styled-select grey rounded", value: 0) %>
     </div>
+    <div class="input-group">
+      <label for="order_location">Location *</label>
+      <%= select("order", "location", [["Bubble", ORDER_LOCATION_BUBBLE],["Colonia", ORDER_LOCATION_COLONIA]], {}, class: "styled-select grey rounded", value: ORDER_LOCATION_BUBBLE) %>
+    </div>
     <div class="input-group hidden">
       <label for="order_status">Status *</label>
       <%= select("order", "status", [["Pending", ORDER_OPEN],["Underway", ORDER_UNDERWAY],["Complete", ORDER_CLOSED],["Canceled", ORDER_CANCELED]], {}, class: "styled-select grey rounded", value: ORDER_OPEN) %>
@@ -78,7 +82,7 @@
       <div class="listing <%= order.is_open ? 'open' : 'disabled' %> <%= order.is_assigned ? 'assigned' : 'not-assigned' %>">
         <div class="main two-wide without-image">
           <div class="right">
-            <p class="meta"><span class="tag"><%= order.platform_text %></span> &middot; <span class="tag"><%= order.status_text %></span> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="meta"><span class="tag"><%= order.platform_text %></span> &middot; <span class="tag"><%= order.location_text %></span> &middot; <span class="tag"><%= order.status_text %></span> &middot; Opened <%= order.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
             <p class="descriptor"><a href="/orders/<%= order.id %>"><%= order.account.name %> <%= order.type_text.downcase %></a> &middot; <% if order.user.blank? %> Unassigned<% if order.time_window %> &middot; Trading Time: <%= OrderHelper.time_options[order.time_window][0] %><% end %><% else %>Assigned to <a href="/cmdrs/<%= order.user.id %>"><%= order.user.username %></a><% end %></p>
             <!--<p class="subtext"><%= order.description %></p>-->
             <p class="subtext"><strong>Commodity:</strong> <%= order.order_quantity %> <%= order.order_commodity %></p>
