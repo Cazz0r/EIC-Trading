@@ -30,4 +30,21 @@ module OrderHelper
     return "Bubble" if location == ORDER_LOCATION_BUBBLE
     return "Colonia" if location == ORDER_LOCATION_COLONIA
   end
+
+  def self.form_commodity_list
+    [
+      ["Bromellite", "Bromellite"],
+      ["Fujin Tea", "Fujin Tea"],
+      ["Kamitra Cigars", "Kamitra Cigars"],
+      ["Kongga Ale", "Kongga Ale"],
+      ["Lavian Brandy", "Lavian Brandy"],
+      ["Meta Alloy", "Meta Alloy"],
+      ["Modular Terminals", "Modular Terminals"],
+      ["Occupied Escape Pods", "Occupied Escape Pods"],
+      ["Osmium", "Osmium"],
+      ["Painite", "Painite"],
+      ["Soontil Relics", "Soontil Relics"],
+      ["Xihe Companions", "Xihe Companions"],
+    ]
+  end
 end

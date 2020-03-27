@@ -41,7 +41,7 @@
 	<div class="input-group">
 		<label for="order_quantity">Quantitiy &amp; Commodity *</label>
      	<input type="number" name="order[order_quantity]" id="order_quantity" value="<%= @order.order_quantity %>" placeholder="Quantity..." size="4" style="float: left; width: 30%;" min="1">
-		<%= select("order", "order_commodity", [["Bromellite", "Bromellite"], ["Fujin Tea", "Fujin Tea"], ["Kamitra Cigars", "Kamitra Cigars"], ["Kongga Ale", "Kongga Ale"], ["Lavian Brandy", "Lavian Brandy"], ["Meta Alloy", "Meta Alloy"], ["Modular Terminals", "Modular Terminals"], ["Painite", "Painite"], ["Soontil Relics", "Soontil Relics"],["Xihe Companions", "Xihe Companions"]], {}, class: "styled-select grey rounded", value: "@order.order_commodity") %>
+		<%= select("order", "order_commodity", OrderHelper.form_commodity_list, {}, class: "styled-select grey rounded", value: "@order.order_commodity") %>
 	</div>
     <div class="input-group">
       <label for="order_account_id">Account *</label>
