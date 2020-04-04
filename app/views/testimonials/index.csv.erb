@@ -1,4 +1,4 @@
 Account,Testimonial,Order #,Date
 <% @testimonials.each do |t| %>
-<%= t.account.name %>,<%= t.content %>,<%= t.order_id %>,<%= t.created_at.utc.to_s(:db) %> UTC
+"<%= t.account.name %>","<%= t.content %>",<%= t.order_id %>,<%= t.created_at.utc.to_s(:db) %> UTC
 <% end %>
