@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :cmdrs
   resources :accounts
   resources :orders
+  resources :testimonials
   get '/s/:hash' => 'accounts#statement'
   get '/t/:hash' => 'orders#summary'
 

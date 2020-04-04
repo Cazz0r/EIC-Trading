@@ -155,6 +155,9 @@ page.orders = {
   openCsvLink: function () {
     var url = 'orders.csv' + page.orders.getOrderFilterLink();
     window.location = url;
+  },
+  openTestimonialsCsvLink: function () {
+    window.location = 'testimonials.csv';
   }
 }
 
