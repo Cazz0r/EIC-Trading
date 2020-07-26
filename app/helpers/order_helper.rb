@@ -43,6 +43,7 @@ module OrderHelper
       ["Occupied Escape Pods", "Occupied Escape Pods"],
       ["Osmium", "Osmium"],
       ["Painite", "Painite"],
+      ["Sensor Fragments", "Sensor Fragments"],
       ["Soontil Relics", "Soontil Relics"],
       ["Xihe Companions", "Xihe Companions"],
     ]
