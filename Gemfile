@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.5.0'
+ruby '2.6.6'
 
-gem 'bundler', '= 1.16.2'
+gem 'bundler', '= 1.17.3'
 gem 'pg', '= 0.21.0'
 gem 'rails', '= 5.1.5'
 gem 'rails_12factor', '= 0.0.3'
