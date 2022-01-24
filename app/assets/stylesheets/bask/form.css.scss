@@ -49,6 +49,12 @@ body div.bask-wrapper div.element.form {
       padding-top: 0;
     }
 
+    &.checkbox {
+      input, label {
+        display: inline-block;
+      }
+    }
+
     label {
       padding-bottom: 4px;
     }

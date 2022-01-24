@@ -47,12 +47,12 @@
       <label for="order_details">Details</label>
       <textarea placeholder="Trade/Order details... I.E. 25 Modular terminals." id="order_details"></textarea>
     </div>-->
-	<div class="input-group">
-		<label for="order_quantity">Quantitiy &amp; Commodity *</label>
-     	<input type="number" name="order[order_quantity]" id="order_quantity" value="" placeholder="Quantity..." size="4" style="float: left; width: 30%;" min="1">
-		<%= select("order", "order_commodity", OrderHelper.form_commodity_list, {}, class: "styled-select grey rounded", value: "Bromellite") %>
-	</div>
-   <div class="input-group">
+    <div class="input-group">
+      <label for="order_quantity">Quantitiy &amp; Commodity *</label>
+        <input type="number" name="order[order_quantity]" id="order_quantity" value="" placeholder="Quantity..." size="4" style="float: left; width: 30%;" min="1">
+      <%= select("order", "order_commodity", OrderHelper.form_commodity_list, {}, class: "styled-select grey rounded", value: "Bromellite") %>
+    </div>
+    <div class="input-group">
       <label for="initial_note">Note</label>
       <input type="text" placeholder="i.e. Security Advised" id="initial_note"  />
     </div>
