@@ -3,10 +3,12 @@ page.index = {
     // page.initPage(function() {});
   },
   submitSigninForm: function() {
-    var username = $('#signin_username').val(), password = $('#signin_password').val();
+    var username = $('#signin_username').val(), password = $('#signin_password').val(), alt_login = $('#alt_login').is(":checked");
     page.errors.clear();
     ShowLoading();
-    $.post("/api/v1/sessions", {session: {username: username, password: password}})
+    var payload = {session: {username: username, password: password}}
+    if(alt_login) payload.alt_login = true
+    $.post("/api/v1/sessions", payload)
     .done(function(response) {
       HideLoading();
       setTimeout(function(){ window.location = '/accounts'; }, 200);
