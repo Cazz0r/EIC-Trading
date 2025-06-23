@@ -13,7 +13,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def render_user(status)
-    outputs = [{ model: @user, key: :user, serializer: API::V1::UserSerializer }]
+    outputs = [{ model: @user, key: :user, serializer: Api::V1::UserSerializer }]
     render_json(status, outputs)
   end
 end

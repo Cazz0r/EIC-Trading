@@ -1,4 +1,5 @@
 class Api::V1::BaseController < Api::V1::ModelLookupCallbacksController
+  skip_before_action :verify_authenticity_token
   before_action :load_includes, except: [:not_found]
   before_action :load_filter, except: [:not_found]
   before_action :load_sort, except: [:not_found]
@@ -6,7 +7,7 @@ class Api::V1::BaseController < Api::V1::ModelLookupCallbacksController
 
   # A function which all output rendering should eventually call
   def render_json(status, data, meta = nil)
-    render json: {}, output: data, request: request, includes: @includes, session_user: @session_user, params: params, meta: meta, serializer: API::V1::BaseSerializer, status: status
+    render json: {}, output: data, request: request, includes: @includes, session_user: @session_user, params: params, meta: meta, serializer: Api::V1::BaseSerializer, status: status
   end
 
   # Callback to load any include data

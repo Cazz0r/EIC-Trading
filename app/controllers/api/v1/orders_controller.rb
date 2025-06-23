@@ -51,12 +51,12 @@ class Api::V1::OrdersController < Api::V1::BaseController
   end
 
   def render_orders(status)
-    outputs = [{ model: @orders, key: :orders, serializer: API::V1::OrderSerializer }]
+    outputs = [{ model: @orders, key: :orders, serializer: Api::V1::OrderSerializer }]
     render_json(status, outputs)
   end
 
   def render_order(status)
-    outputs = [{ model: @order, key: :order, serializer: API::V1::OrderSerializer }]
+    outputs = [{ model: @order, key: :order, serializer: Api::V1::OrderSerializer }]
     render_json(status, outputs)
   end
 end

@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
-  include SessionHelper
   before_action :load_session_user
 
   def load_session_user

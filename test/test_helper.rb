@@ -28,18 +28,10 @@ class Minitest::Test
 end
 
 class ActiveSupport::TestCase
-  extend MiniTest::Spec::DSL
+  extend Minitest::Spec::DSL
   ActiveRecord::Migration.check_pending!
   self.fixture_path = "test/fixtures"
   fixtures :all
-
-  # def signin(user)
-  #   session[:identity] = user.id
-  # end
-
-  # def signout
-  #   session[:identity] = nil
-  # end
 
   def gen_user
     User.create({username: "CMDR-#{(Random.rand * 1000).round}", rank: "Private", tags: "Fun"})

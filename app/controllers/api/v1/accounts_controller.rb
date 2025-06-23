@@ -39,12 +39,12 @@ class Api::V1::AccountsController < Api::V1::BaseController
   end
 
   def render_accounts(status)
-    outputs = [{ model: @accounts, key: :accounts, serializer: API::V1::AccountSerializer }]
+    outputs = [{ model: @accounts, key: :accounts, serializer: Api::V1::AccountSerializer }]
     render_json(status, outputs)
   end
 
   def render_account(status)
-    outputs = [{ model: @account, key: :account, serializer: API::V1::AccountSerializer }]
+    outputs = [{ model: @account, key: :account, serializer: Api::V1::AccountSerializer }]
     render_json(status, outputs)
   end
 end

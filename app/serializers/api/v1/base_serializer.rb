@@ -1,4 +1,4 @@
-class API::V1::BaseSerializer < ActiveModel::Serializer
+class Api::V1::BaseSerializer < ActiveModel::Serializer
   attribute :meta
 
   def meta

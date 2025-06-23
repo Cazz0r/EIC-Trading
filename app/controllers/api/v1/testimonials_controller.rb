@@ -37,12 +37,12 @@ class Api::V1::TestimonialsController < Api::V1::BaseController
   end
 
   def render_testimonials(status)
-    outputs = [{ model: @testimonials, key: :testimonials, serializer: API::V1::TestimonialSerializer }]
+    outputs = [{ model: @testimonials, key: :testimonials, serializer: Api::V1::TestimonialSerializer }]
     render_json(status, outputs)
   end
 
   def render_testimonial(status)
-    outputs = [{ model: @testimonial, key: :testimonial, serializer: API::V1::TestimonialSerializer }]
+    outputs = [{ model: @testimonial, key: :testimonial, serializer: Api::V1::TestimonialSerializer }]
     render_json(status, outputs)
   end
 end
