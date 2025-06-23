@@ -26,6 +26,8 @@ module EicSis
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
+    config.active_storage.draw_routes = false
+
     if Rails.env.development?
       logger = ActiveSupport::Logger.new(STDOUT)
       logger.formatter = config.log_formatter
