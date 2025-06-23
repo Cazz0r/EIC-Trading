@@ -106,3 +106,13 @@ Port: 3306
 User: drieton
 Pass: passwordofdrieton
 ```
+
+# Heroku Stack Upgrades
+Occasially maintenance must be done in the form of upgrading the base linux box being run on Heroku. These are very general boxes and easy to set up and use. We are currently using `heroku-24` as of `June 2025`. The following commands will have gather this information about the running Heroku service.
+
+```
+heroku stack -a eic-sister
+heroku stack:set heroku-24 -a eic-sister
+heroku releases -a eic-sister
+heroku releases:rollback v110 -a eic-sister
+```
