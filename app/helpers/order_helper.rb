@@ -49,6 +49,7 @@ module OrderHelper
         ["Xihe Companions", "Xihe Companions"]
       ],
       "Odyssey Unlocks" => [
+        ["Push", "Push"],
         ["Opinion Polls", "Opinion Polls"],
         ["Surveillance Equipment", "Surveillance Equipment"],
         ["Smear Campaign Plans", "Smear Campaign Plans"],
