@@ -49,20 +49,15 @@ module OrderHelper
         ["Xihe Companions", "Xihe Companions"]
       ],
       "Odyssey Unlocks" => [
-        ["Push", "Push"],
         ["Opinion Polls", "Opinion Polls"],
         ["Surveillance Equipment", "Surveillance Equipment"],
         ["Smear Campaign Plans", "Smear Campaign Plans"],
         ["Genetic Repair Meds", "Genetic Repair Meds"],
-        ["Financial projections", "Financial projections"],
-        ["Settlement Defense Plans", "Settlement Defense Plans"],
+        ["Financial Projections", "Financial Projections"],
+        ["Settlement Defence Plans", "Settlement Defence Plans"],
         ["Insight Entertainment Suites", "Insight Entertainment Suites"],
-        ["Multimedia Entertainment", "Multimedia Entertainment"], 
-        ["Classic Entertainment", "Classic Entertainment"],
         ["Cat Media", "Cat Media"],
-        ["Biological Sample", "Biological Sample"],
         ["Employee Genetic Data", "Employee Genetic Data"],
-        ["Genetic Research", "Genetic Research"]
       ]
     }
   end
