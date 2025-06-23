@@ -116,7 +116,11 @@
         <div class="listing">
           <div class="main two-wide">
             <div class="left">
-              <a href="/cmdrs/<%= trade_event.user.id %>"><div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div></a>
+              <% if trade_event.user %>
+                <a href="/cmdrs/<%= trade_event.user.id %>"><div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div></a>
+              <% else %>
+                <div class="image" title="User missing"></div>
+              <% end %>
             </div>
             <div class="right">
               <p class="meta">
@@ -125,7 +129,11 @@
                 <span class="really-delete-<%= trade_event.id %> hidden"> Really? <a onclick="page.tradeEvents.deleteTradeEvent(<%= trade_event.id %>);"><strong>Yes</strong></a> &middot; <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');">No</a></span>
                 <a onclick="page.toggleElement('span.really-delete-<%= trade_event.id %>');page.toggleElement('a.start-delete-<%= trade_event.id %>');" class="start-delete-<%= trade_event.id %>">Delete</a> &middot;
 
-                <a href="/cmdrs/<%= trade_event.user.id %>"><%= trade_event.user.username %></a> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+                <% if trade_event.user %>
+                  <a href="/cmdrs/<%= trade_event.user.id %>"><%= trade_event.user.username %></a> &middot; <%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+                <% else %>
+                  <span class="missing-user">[Unknown User]</span>
+                <% end %>
               <p class="quote">"<%= trade_event.content %>"</p>
             </div>
           </div>

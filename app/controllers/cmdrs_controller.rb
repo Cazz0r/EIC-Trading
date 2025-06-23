@@ -12,7 +12,8 @@ class CmdrsController < ApplicationController
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    @user = User.find_by(id: params[:id])
+    return if @user.blank?
     @trade_events = TradeEvent.where(user_id: @user.id).order("created_at desc").limit(50)
     @socialmeta = {title: "EIC: CMDR #{@user.username}"}
     @cmdr_session_on = @user.id == @session_user.id

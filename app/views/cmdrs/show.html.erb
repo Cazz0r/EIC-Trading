@@ -1,64 +1,76 @@
 <div class="bask-wrapper">
-  <div class="element">
-    <h3><%= @user.username %>
-      <% unless @session_user.id == @user.id %> &middot; 
-        <% if @session_user.admin? %>
-          <% if @user.admin? %>
-            <a onclick="page.users.makeUserNotAdmin(<%= @user.id %>)">Un-Admin</a>
-          <% else %>
-            <a onclick="page.users.makeUserAdmin(<%= @user.id %>)">Make Admin</a>
+  <% if @user.present? %>
+    <div class="element">
+      <h3><%= @user.username %>
+        <% unless @session_user.id == @user.id %> &middot; 
+          <% if @session_user.admin? %>
+            <% if @user.admin? %>
+              <a onclick="page.users.makeUserNotAdmin(<%= @user.id %>)">Un-Admin</a>
+            <% else %>
+              <a onclick="page.users.makeUserAdmin(<%= @user.id %>)">Make Admin</a>
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
-      <% if @cmdr_session_on %> &middot; <a onclick="page.dashboard.signout();">Signout</a><% end %>
-      <% if @session_user.admin? || @session_user.id == @user.id %> &middot; <a onclick="page.toggleElement('div.set-new-password');">Set Password</a><% end %>
-    </h3>
-  </div>
-
-  <div class="element set-new-password form bound hidden">
-    <div class="input-group">
-      <label for="new_password">New Password</label>
-      <input type="password" placeholder="Enter password here" id="new_password" />
+        <% if @cmdr_session_on %> &middot; <a onclick="page.dashboard.signout();">Signout</a><% end %>
+        <% if @session_user.admin? || @session_user.id == @user.id %> &middot; <a onclick="page.toggleElement('div.set-new-password');">Set Password</a><% end %>
+      </h3>
     </div>
-    <div class="input-group">
-      <button onclick="page.users.setUserPassword(<%= @user.id %>);">Set Password</button>
-    </div>
-  </div>
 
-  <div class="element model-list">
-    <div class="listing">
-      <div class="main two-wide">
-        <div class="left">
-          <a href="/cmdrs/<%= @user.id %>"><div class="image" style="background-image: url(<%= @user.image_url %>)"></div></a>
-        </div>
-        <div class="right">
-          <p class="meta"><% if @user.admin? %><span class="tag">Admin</span> &middot; <% end %>Trading since <%= @user.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
-          <p class="descriptor"><a href="/cmdrs/<%= @user.id %>">CMDR <%= @user.username %></a></p>
-          <p class="subtext"><%= @user.rank %> - <%= @user.tags %></p>
-        </div>
+    <div class="element set-new-password form bound hidden">
+      <div class="input-group">
+        <label for="new_password">New Password</label>
+        <input type="password" placeholder="Enter password here" id="new_password" />
       </div>
-      <div class="tools hidden">
+      <div class="input-group">
+        <button onclick="page.users.setUserPassword(<%= @user.id %>);">Set Password</button>
       </div>
     </div>
-  </div>
+
+    <div class="element model-list">
+      <div class="listing">
+        <div class="main two-wide">
+          <div class="left">
+            <a href="/cmdrs/<%= @user.id %>"><div class="image" style="background-image: url(<%= @user.image_url %>)"></div></a>
+          </div>
+          <div class="right">
+            <p class="meta"><% if @user.admin? %><span class="tag">Admin</span> &middot; <% end %>Trading since <%= @user.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+            <p class="descriptor"><a href="/cmdrs/<%= @user.id %>">CMDR <%= @user.username %></a></p>
+            <p class="subtext"><%= @user.rank %> - <%= @user.tags %></p>
+          </div>
+        </div>
+        <div class="tools hidden">
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="element">
+      <h3>CMDR not found...</h3>
+    </div>
+  <% end %>
 
   <div class="element">
     <h3>Recent Contributions</h3>
   </div>
 
-  <div class="element model-list">
-    <% @trade_events.each do |trade_event| %>
-      <div class="listing">
-        <div class="main two-wide">
-          <div class="left">
-            <div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div>
-          </div>
-          <div class="right">
-            <p class="meta"><% if trade_event.order %><a href="/orders/<%= trade_event.order.id %>">View Order</a> &middot; <% end %><% if trade_event.account %><a href="/accounts/<%= trade_event.account.id %>"><%= trade_event.account.name %> Account</a> &middot; <% end %><%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
-            <p class="quote">"<%= trade_event.content %>"</p>
+  <% if @trade_events.present? %>
+    <div class="element model-list">
+      <% @trade_events.each do |trade_event| %>
+        <div class="listing">
+          <div class="main two-wide">
+            <div class="left">
+              <% if trade_event.user %>
+                <div class="image" style="background-image: url(<%= trade_event.user.image_url %>)"></div>
+              <% else %>
+                <div class="image" title="User missing"></div>
+              <% end %>
+            </div>
+            <div class="right">
+              <p class="meta"><% if trade_event.order %><a href="/orders/<%= trade_event.order.id %>">View Order</a> &middot; <% end %><% if trade_event.account %><a href="/accounts/<%= trade_event.account.id %>"><%= trade_event.account.name %> Account</a> &middot; <% end %><%= trade_event.created_at.utc.to_formatted_s(:long_ordinal) %> UTC</p>
+              <p class="quote">"<%= trade_event.content %>"</p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
