@@ -1,7 +1,7 @@
-FROM ruby:2.6.6
+FROM ruby:3.2.4
 RUN mkdir /app
 WORKDIR /app
-RUN gem install bundler -v 1.17.3
+RUN gem update --system 3.4.22 && gem install bundler -v 2.4.22
 COPY Gemfile ./
 RUN bundle install
 COPY . .

@@ -27,19 +27,19 @@
       @session_user = EicApiHelper.get_user_from_payload(payload)
       return ar_error(@session_user) unless @session_user.save
     end
-      
-    login(@session_user)
+
+    session[:user_id] = @session_user.id
     render_session(201)
   end
 
   def destroy
-    logout
+    session[:user_id] = nil
     head :no_content
   end
 
   private
   def render_session(status)
-    outputs = [{ model: @session_user, key: :session, serializer: API::V1::SessionSerializer }]
+    outputs = [{ model: @session_user, key: :session, serializer: Api::V1::SessionSerializer }]
     render_json(status, outputs)
   end
 

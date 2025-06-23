@@ -1,3 +1,3 @@
-class API::V1::TradeEventSerializer < API::V1::ModelSerializer
+class Api::V1::TradeEventSerializer < Api::V1::ModelSerializer
   attributes :content, :user_id, :account_id
 end

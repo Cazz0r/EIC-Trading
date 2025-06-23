@@ -1,4 +1,4 @@
-class API::V1::ModelSerializer < ActiveModel::Serializer
+class Api::V1::ModelSerializer < ActiveModel::Serializer
   attribute :id
   attribute :created_at
   attribute :updated_at

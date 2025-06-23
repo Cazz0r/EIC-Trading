@@ -35,13 +35,13 @@ class Api::V1::TradeEventsController < Api::V1::BaseController
   end
 
   def render_trade_events(status)
-    outputs = [{ model: @trade_events, key: :trade_events, serializer: API::V1::TradeEventSerializer }]
-    outputs << { model: @users, key: :users, serializer: API::V1::UserSerializer }
+    outputs = [{ model: @trade_events, key: :trade_events, serializer: Api::V1::TradeEventSerializer }]
+    outputs << { model: @users, key: :users, serializer: Api::V1::UserSerializer }
     render_json(status, outputs)
   end
 
   def render_trade_event(status)
-    outputs = [{ model: @trade_event, key: :trade_event, serializer: API::V1::TradeEventSerializer }]
+    outputs = [{ model: @trade_event, key: :trade_event, serializer: Api::V1::TradeEventSerializer }]
     render_json(status, outputs)
   end
 end

@@ -2,17 +2,34 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# Bundler is safe to call now that Rails is loaded
 Bundler.require(*Rails.groups)
+
+# if defined?(Rails) && (Rails.env == 'development')
+#   Rails.logger = Logger.new(STDOUT)
+# end
+
+# if defined?(Rails) && Rails.env.development?
+#   Rails.logger = ActiveSupport::Logger.new(STDOUT)
+# end
+
+# if defined?(Rails) && Rails.env.development?
+#   logger = ActiveSupport::Logger.new(STDOUT)
+#   logger.formatter = Rails.application.config.log_formatter
+#   Rails.logger = ActiveSupport::TaggedLogging.new(logger)
+# end
 
 module EicSis
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.1
+    config.load_defaults 6.1
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+    if Rails.env.development?
+      logger = ActiveSupport::Logger.new(STDOUT)
+      logger.formatter = config.log_formatter
+      config.logger = ActiveSupport::TaggedLogging.new(logger)
+    end
   end
 end
