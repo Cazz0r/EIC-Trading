@@ -8,8 +8,9 @@ module EicApiHelper
   end
 
   def self.get_user_from_payload(payload)
-    user = User.find_by_username(payload["user"]["username"]) || User.new
+    user = User.find_by(username: payload["user"]["username"]) || User.new
     user.username = payload["user"]["username"]
+    user.password = SecureRandom.base58(16)
     user.image_url = payload["user"]["avatar"] unless payload["user"]["avatar"].blank?
     user.rank = payload["user"]["rank"] unless payload["user"]["rank"].blank?
     user.tags = payload["user"]["tags"].join(' ') unless payload["user"]["tags"].blank?

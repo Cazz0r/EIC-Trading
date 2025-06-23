@@ -50,18 +50,20 @@ class Api::V1::BaseController < Api::V1::ModelLookupCallbacksController
   # A function meant to handle/parse errors on an active record object into our json format
   def ar_error(model)
     response_json = { errors: [] }
-    model.errors.each do |attribute, message|
+  
+    model.errors.each do |error|
       response_json[:errors] << {
-        id: nil,            # A unique identifier for this particular occurrence of the problem.
-        href: nil,          # A URI that MAY yield further details about this particular occurrence of the problem.
-        status: 422,        # The HTTP status code applicable to this problem, expressed as a string value.
-        code: 0,            # An application-specific error code, expressed as a string value.
-        title: attribute,   # A short, human-readable summary of the problem. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization.
-        detail: message,    # A human-readable explanation specific to this occurrence of the problem.
-        links: nil,         # Associated resources which can be dereferenced from the request document.
-        path: nil           # The relative path to the relevant attribute within the associated resource(s). Only appropriate for
+        id: nil,                  # A unique identifier for this particular occurrence of the problem.
+        href: nil,                # A URI that MAY yield further details about this particular occurrence of the problem.
+        status: 422,              # The HTTP status code applicable to this problem, expressed as a string value.
+        code: 0,                  # An application-specific error code, expressed as a string value.
+        title: error.attribute,   # A short, human-readable summary of the problem. It SHOULD NOT change from occurrence to occurrence of the problem, except for purposes of localization.
+        detail: error.message,    # A human-readable explanation specific to this occurrence of the problem.
+        links: nil,               # Associated resources which can be dereferenced from the request document.
+        path: nil                 # The relative path to the relevant attribute within the associated resource(s). Only appropriate for
       }
     end
+  
     return render json: response_json, status: 422
   end
 end
