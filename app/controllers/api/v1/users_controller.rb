@@ -3,7 +3,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   before_action :load_user, only: [:update]
 
   def update
-    return ar_error(@user) unless @user.update_attributes(user_params)
+    return ar_error(@user) unless @user.update(user_params)
     render_user(202)
   end
 

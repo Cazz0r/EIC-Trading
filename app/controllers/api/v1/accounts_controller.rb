@@ -23,7 +23,7 @@ class Api::V1::AccountsController < Api::V1::BaseController
 
   def update
     credit_count = @account.credit_count
-    return ar_error(@account) unless @account.update_attributes(account_params)
+    return ar_error(@account) unless @account.update(account_params)
     TradeEventHelper.trade_event_for_credits_changed(credit_count, @session_user, @account)
     render_account(202)
   end

@@ -31,7 +31,7 @@ class Api::V1::OrdersController < Api::V1::BaseController
 
   def update
     old_status, old_user_id = @order.status, @order.user_id
-    return ar_error(@order) unless @order.update_attributes(order_params)
+    return ar_error(@order) unless @order.update(order_params)
     TradeEventHelper.trade_events_for_order_changed(old_status, old_user_id, @order, @session_user)
     render_order(202)
   end

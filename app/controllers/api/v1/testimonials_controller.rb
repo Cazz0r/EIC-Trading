@@ -22,7 +22,7 @@ class Api::V1::TestimonialsController < Api::V1::BaseController
   end
 
   def update
-    return ar_error(@testimonial) unless @testimonial.update_attributes(testimonial_params)
+    return ar_error(@testimonial) unless @testimonial.update(testimonial_params)
     render_testimonial(202)
   end
 

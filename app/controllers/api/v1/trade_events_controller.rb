@@ -20,7 +20,7 @@ class Api::V1::TradeEventsController < Api::V1::BaseController
   end
 
   def update
-    return ar_error(@trade_event) unless @trade_event.update_attributes(trade_event_params)
+    return ar_error(@trade_event) unless @trade_event.update(trade_event_params)
     render_trade_event(202)
   end
 
