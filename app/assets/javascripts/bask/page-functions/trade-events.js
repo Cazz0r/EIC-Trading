@@ -1,7 +1,8 @@
 page.tradeEvents = {
   createTradeEventForOrder: function() {
+    if(!page.debounceRequest()) return;
     var content = $('#trade_event_input').val();
-    if(blank(content)) { return; }
+    if(blank(content)) { page.finishRequest(); return; }
 
     page.errors.clear();
     ShowLoading();
@@ -17,13 +18,15 @@ page.tradeEvents = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   createTradeEvent: function() {
+    if(!page.debounceRequest()) return;
     var content = $('#trade_event_input').val();
-    if(blank(content)) { return; }
+    if(blank(content)) { page.finishRequest(); return; }
 
     page.errors.clear();
     ShowLoading();
@@ -39,13 +42,15 @@ page.tradeEvents = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   updateTradeEvent: function(id) {
+    if(!page.debounceRequest()) return;
     var content = $('#trade_event_input_' + id).val();
-    if(blank(content)) { return; }
+    if(blank(content)) { page.finishRequest(); return; }
 
     page.errors.clear();
     ShowLoading();
@@ -61,11 +66,13 @@ page.tradeEvents = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   deleteTradeEvent: function(id) {
+    if(!page.debounceRequest()) return;
     page.errors.clear();
     ShowLoading();
     $.ajax({
@@ -80,6 +87,7 @@ page.tradeEvents = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
