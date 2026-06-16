@@ -3,15 +3,19 @@ page.testimonials = {
     // console.log('You are signed in!');
   },
   createTestimonial: function() {
+    if(!page.debounceRequest()) return;
     // Perform error checks
     page.errors.clear();
     if(blank($('#testimonial_content').val())) {
+      page.finishRequest();
       return page.errors.set(page.errors.custom("If you'd like to leave a testimonial you need to enter some text."));
     }
     if(blank($('#testimonial_account_id').val())) {
+      page.finishRequest();
       return page.errors.set(page.errors.custom("Please select an account for this testimonial."));
     }
     if(blank($('#testimonial_order_id').val())) {
+      page.finishRequest();
       return page.errors.set(page.errors.custom("Please select an order for this testimonial."));
     }
 
@@ -29,11 +33,13 @@ page.testimonials = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   deleteTestimonial: function(id) {
+    if(!page.debounceRequest()) return;
     page.errors.clear();
     ShowLoading();
     $.ajax({
@@ -48,6 +54,7 @@ page.testimonials = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });

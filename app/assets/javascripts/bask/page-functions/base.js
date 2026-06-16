@@ -1,4 +1,5 @@
 var page = {
+  requestInProgress: false,
   initPage: function(func) {
     setTimeout(func, 0);
   },
@@ -12,6 +13,16 @@ var page = {
   getId: function() {
     var url =  window.location.href;
     return parseInt(url.substring(url.lastIndexOf('/') + 1));
+  },
+  debounceRequest: function() {
+    if(page.requestInProgress) {
+      return false;
+    }
+    page.requestInProgress = true;
+    return true;
+  },
+  finishRequest: function() {
+    page.requestInProgress = false;
   },
   errors: {
     clear: function() {

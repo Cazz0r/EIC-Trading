@@ -8,9 +8,11 @@ page.orders = {
     page.orders.new_account_id = null;
   },
   createOrder: function () {
+    if(!page.debounceRequest()) return;
     // Perform error checks
     page.errors.clear();
     if (!page.orders.hasNewAccountOnOrder() && blank($('#order_account_id').val())) {
+      page.finishRequest();
       return page.errors.set(page.errors.custom("Please select an account for this order."));
     }
 
@@ -34,6 +36,7 @@ page.orders = {
         },
         error: function (response) {
           HideLoading();
+          page.finishRequest();
           page.errors.set(response.responseJSON);
         }
       });
@@ -47,6 +50,7 @@ page.orders = {
     // Perform error checks
     page.errors.clear();
     if (blank($('#order_quantity').val())) {
+      page.finishRequest();
       return page.errors.set(page.errors.custom("Please enter a quantity."));
     }
 
@@ -63,14 +67,17 @@ page.orders = {
       },
       error: function (response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   updateOrder: function () {
+    if(!page.debounceRequest()) return;
     // Perform error checks
     page.errors.clear();
     if (blank($('#order_quantity').val())) {
+      page.finishRequest();
       return page.errors.set(page.errors.custom("Please enter a quantity."));
     }
 
@@ -93,11 +100,13 @@ page.orders = {
       },
       error: function (response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   deleteOrder: function () {
+    if(!page.debounceRequest()) return;
     page.errors.clear();
     ShowLoading();
     $.ajax({
@@ -112,6 +121,7 @@ page.orders = {
       },
       error: function (response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });

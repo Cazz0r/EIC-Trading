@@ -3,6 +3,7 @@ page.accounts = {
     // console.log('You are signed in!');
   },
   createAccount: function() {
+    if(!page.debounceRequest()) return;
     page.errors.clear();
     ShowLoading();
     $.ajax({
@@ -17,11 +18,13 @@ page.accounts = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   updateAccount: function() {
+    if(!page.debounceRequest()) return;
     page.errors.clear();
     ShowLoading();
     $.ajax({
@@ -32,15 +35,18 @@ page.accounts = {
       dataType: 'json',
       success: function(response) {
         HideLoading();
+        page.finishRequest();
         setTimeout(function(){ location.reload(); }, 200);
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   deleteAccount: function() {
+    if(!page.debounceRequest()) return;
     page.errors.clear();
     ShowLoading();
     $.ajax({
@@ -55,13 +61,15 @@ page.accounts = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   depositWithdraw: function(current_credits) {
+    if(!page.debounceRequest()) return;
     var dw_val = $('#deposit_withdraw').val();
-    if(blank(dw_val)) { return; }
+    if(blank(dw_val)) { page.finishRequest(); return; }
     dw_val = dw_val.replace(/\s|\+/g, '');
     var new_credits = current_credits + parseInt(dw_val);
     page.errors.clear();
@@ -78,13 +86,15 @@ page.accounts = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });
   },
   depositWithdrawFrom: function(account_id, current_credits) {
+    if(!page.debounceRequest()) return;
     var dw_val = $('#deposit_withdraw').val();
-    if(blank(dw_val)) { return; }
+    if(blank(dw_val)) { page.finishRequest(); return; }
     dw_val = dw_val.replace(/\s|\+/g, '');
     var new_credits = current_credits + parseInt(dw_val);
     page.errors.clear();
@@ -101,6 +111,7 @@ page.accounts = {
       },
       error: function(response) {
         HideLoading();
+        page.finishRequest();
         page.errors.set(response.responseJSON);
       }
     });

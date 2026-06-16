@@ -116,3 +116,63 @@ heroku stack:set heroku-24 -a eic-sister
 heroku releases -a eic-sister
 heroku releases:rollback v110 -a eic-sister
 ```
+
+# Docker
+```
+Docker: docker, docker-compose, colima - Being used in place of Docker Desktop
+Colima: colima start --memory 8 --cpu 4 --disk 60, colima status, colima stop
+```
+
+# Alias Helpers
+
+```
+# Blueshift Docker
+alias bs-heroku-remote="heroku git:remote -a eic-sister"
+alias bs-dcup="docker-compose up"
+alias bs-dcbuild="docker-compose up --build"
+alias bs-rebuild="bs-dcdown && bs-dclean && bs-drall && bs-dcbuild"
+alias bs-dcstart="docker-compose start"
+alias bs-dcstop="docker-compose stop"
+alias bs-dcdown="docker-compose down"
+alias bs-dchelp="docker-compose help"
+alias bs-dcps="docker-compose ps"
+alias bs-dcrestart="docker-compose restart"
+alias bs-dclogs="docker-compose logs -f"
+alias bs-dclean="docker system prune -f"
+alias bs-dcstats="docker stats blueshift-web-1 blueshift-postgres-1"
+alias bs-drdb="docker volume rm blueshift_postgres"
+alias bs-drall="bs-drdb"
+
+# General
+alias bs-s="docker exec -ti blueshift-web-1 bundle exec puma -C config/puma.rb"
+alias bs-c="clear"
+
+# Pass-through commands
+function bs-rake() {
+  docker exec -ti blueshift-web-1 rake "$@"
+}
+
+function bs-rails() {
+  docker exec -ti blueshift-web-1 rails "$@"
+}
+
+function bs-bundle() {
+  docker exec -ti blueshift-web-1 bundle "$@"
+}
+
+function bs-grunt() {
+  docker exec -ti blueshift-web-1 grunt "$@"
+}
+
+function bs-dcrun() {
+  docker-compose run "$@"
+}
+
+function bs-dv() {
+  docker volume "$@"
+}
+
+function mtest() {
+  docker exec -ti blueshift-web-1 m $@
+}
+```
